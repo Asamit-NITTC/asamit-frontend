@@ -1,0 +1,36 @@
+{
+  "name": "simple-asamit-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "hosting": "npm run dev -w hosting",
+    "functions": "npm run dev -w functions",
+    "dev": "npm run dev -w hosting",
+    "build": "npm run build -w hosting",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src --fix 'src/**/*.js'",
+    "format": "prettier --write src/**/*.js",
+    "lint-fix": "run-s lint format",
+    "prepare": "husky install"
+  },
+  "author": "shun-harutaro",
+  "license": "MIT",
+  "workspaces": [
+    "hosting"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.22.10",
+    "@babel/preset-react": "^7.22.5",
+    "babel-loader": "^9.1.3",
+    "eslint": "^8.47.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-react": "^7.33.1",
+    "husky": "^8.0.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.0.1"
+  },
+  "dependencies": {
+    "axios": "^1.5.0"
+  }
+}
