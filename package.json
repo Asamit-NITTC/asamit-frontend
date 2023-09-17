@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "hosting": "npm run dev -w hosting",
-    "functions": "npm run dev -w functions",
-    "dev": "npm run dev -w hosting",
-    "build": "npm run build -w hosting",
+    "dev": "webpack-dev-server --config ./webpack.dev.js",
+    "dev-build": "webpack --config ./webpack.dev.js",
+    "build": "webpack --config ./webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src --fix 'src/**/*.js'",
     "format": "prettier --write src/**/*.js",
@@ -16,9 +15,6 @@
   },
   "author": "shun-harutaro",
   "license": "MIT",
-  "workspaces": [
-    "hosting"
-  ],
   "devDependencies": {
     "@babel/core": "^7.22.10",
     "@babel/preset-react": "^7.22.5",
@@ -26,11 +22,20 @@
     "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-react": "^7.33.1",
+    "html-webpack-plugin": "^5.5.3",
     "husky": "^8.0.3",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^3.0.1"
+    "prettier": "^3.0.1",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-merge": "^5.9.0"
   },
   "dependencies": {
-    "axios": "^1.5.0"
+    "@line/liff": "^2.22.3",
+    "axios": "^1.5.0",
+    "dotenv": "^16.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0"
   }
 }

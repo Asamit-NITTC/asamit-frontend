@@ -4,7 +4,7 @@ export const Home = () => {
   return (
     <>
       <h1>LINEloginテストアプリ</h1>
-      <a href="/api/login">LINEでログイン</a>
+      <a href="/liff">LIFF画面</a>
     </>
   );
 };
