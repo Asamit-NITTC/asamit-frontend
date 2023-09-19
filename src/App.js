@@ -1,6 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./routes/Home";
+import { LiffRoot } from "./LiffRoot";
+
 import { Liff } from "./routes/Liff";
 import { LiffTest } from "./routes/LiffTest";
 import { Profile } from "./routes/Profile";
@@ -11,8 +13,9 @@ const App = () => {
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/liff" element={<Liff />} />
-        <Route path="/liff-test" element={<LiffTest />} />
+        <Route path="/liff/" element={<LiffRoot />} />
+        <Route path="/liff/main" element={<Liff />} />
+        <Route path="/liff/review" element={<LiffTest />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
