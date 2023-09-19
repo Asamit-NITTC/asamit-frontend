@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "asami-1e0c2"
+  },
+  "targets": {
+    "asami-1e0c2": {
+      "hosting": {
+        "main": [
+          "asamit"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

@@ -16,3 +16,10 @@ And then run the development server:
 npm i
 npm run dev
 ```
+### deploy
+```sh
+touch .env.prod
+echo "REACT_APP_LIFF_ID=xxxxxxxxxxxxx" >> .env.prod
+npm run build
+firebase deploy --only hosting
+```
