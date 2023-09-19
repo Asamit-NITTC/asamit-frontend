@@ -12,9 +12,9 @@ export const Liff = () => {
   const initLiff = async () => {
     setIsInClient(liff.isInClient());
     try {
-      await liff.init({ liffId: process.env.REACT_APP_LIFF_ID })
-    } catch(err) {
-      setError("Failed to init liff")
+      await liff.init({ liffId: process.env.REACT_APP_LIFF_ID });
+    } catch (err) {
+      setError("Failed to init liff");
     }
     setMessage("LIFF init succeeded");
     if (!liff.isLoggedIn()) {
@@ -26,10 +26,10 @@ export const Liff = () => {
     try {
       const profile = await liff.getProfile();
       setProfile(profile);
-    } catch(err) {
-      setError("Failed to get profile.")
+    } catch (err) {
+      setError("Failed to get profile.");
     }
-  }
+  };
 
   const sendMessages = (message) => {
     liff
@@ -58,10 +58,10 @@ export const Liff = () => {
 
   const logoutLiff = () => {
     liff.logout();
-  }
+  };
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await initLiff();
       const idToken = liff.getIDToken();
       setIdToken(idToken);
@@ -81,17 +81,19 @@ export const Liff = () => {
           <code>{error}</code>
         </p>
       )}
-      {isInClient && <div>
-        <h2>投稿は以下から</h2>
-        <input
-          type="text"
-          value={post}
-          label="今日は何する？"
-          onChange={handleTextChange}
-        />
-        <input type="submit" onClick={handleSubmit} />
-      </div>}
-      <button onClick={logoutLiff} >ログアウト</button>
+      {isInClient && (
+        <div>
+          <h2>投稿は以下から</h2>
+          <input
+            type="text"
+            value={post}
+            label="今日は何する？"
+            onChange={handleTextChange}
+          />
+          <input type="submit" onClick={handleSubmit} />
+        </div>
+      )}
+      <button onClick={logoutLiff}>ログアウト</button>
     </div>
   );
 };
