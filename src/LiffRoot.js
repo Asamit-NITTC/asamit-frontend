@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import liff from "@line/liff";
+import LIFFInspectorPlugin from '@line/liff-inspector';
+liff.use(new LIFFInspectorPlugin());
 
 export const LiffRoot = () => {
   const [isInClient, setIsInClient] = useState(true);
@@ -9,6 +11,7 @@ export const LiffRoot = () => {
       //if (!liff.isInClient()) setIsInClient(false);
       if (!liff.isLoggedIn()) {
         liff.login();
+        setIsInClient(true);
       }
     })()
   }, []);
