@@ -31,7 +31,11 @@ export const LiffSignUp = () => {
       );
       setLog("signup success" + JSON.stringify(res.data));
     } catch (err) {
-      setLog("signup failed" + JSON.stringify(err));
+      const errMsg = err.response.data.error;
+      setLog("signup failed " + errMsg);
+      if (errMsg === "登録済み") {
+        liff.closeWindow();
+      }
     }
   };
 
@@ -49,7 +53,7 @@ export const LiffSignUp = () => {
 
   return (
     <div>
-      <h1>登録</h1>
+      <h1>登録中</h1>
       <p>{log}</p>
     </div>
   );
