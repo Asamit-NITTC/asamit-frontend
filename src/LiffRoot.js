@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import liff from "@line/liff";
 
 export const LiffRoot = () => {
-  const [isInClient, setIsInClient] = useState(true);
+  //const [isInClient, setIsInClient] = useState(true);
   useEffect(() => {
     (async () => {
       await liff.init({ liffId: process.env.REACT_APP_LIFF_ID });
@@ -16,8 +16,7 @@ export const LiffRoot = () => {
 
   return (
     <>
-      <h1>LIFFROOT</h1>
-      {!isInClient && <h1>This app is only available on LIFF browser</h1>}
+      {/*!isInClient && <h1>This app is only available on LIFF browser</h1>*/}
     </>
   )
 }
