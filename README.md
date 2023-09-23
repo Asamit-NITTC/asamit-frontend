@@ -9,6 +9,7 @@ First, prepare .env file and set API key.
 ```sh
 touch .env
 echo "REACT_APP_LIFF_ID=xxxxxxxxxxxxx" >> .env
+echo "BASE_URL=https://xxxxxxxxxx.ngrok-free.app" >> .env
 ```
 Second, install dependencies.
 And then run the development server:
@@ -20,6 +21,7 @@ npm run dev
 ```sh
 touch .env.prod
 echo "REACT_APP_LIFF_ID=xxxxxxxxxxxxx" >> .env.prod
+echo "BASE_URL=https://xxxxxxxxxx.xxx" >> .env.prod
 npm run build
 firebase deploy --only hosting
 ```
