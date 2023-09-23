@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import liff from "@line/liff";
 import axios from "axios";
 const BASE_URL = process.env.BASE_URL;
+import LIFFInspectorPlugin from "@line/liff-inspector";
+liff.use(new LIFFInspectorPlugin());
 
 export const LiffSignUp = () => {
   const [log, setLog] = useState("");
