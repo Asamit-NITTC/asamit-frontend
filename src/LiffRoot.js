@@ -1,21 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import liff from "@line/liff";
 
 export const LiffRoot = () => {
-  //const [isInClient, setIsInClient] = useState(true);
+  const [isInClient, setIsInClient] = useState(true);
   useEffect(() => {
     (async () => {
       await liff.init({ liffId: process.env.REACT_APP_LIFF_ID });
       //if (!liff.isInClient()) setIsInClient(false);
       if (!liff.isLoggedIn()) {
         liff.login();
+        setIsInClient(true);
       }
     })()
   }, []);
 
   return (
     <>
-      {/*!isInClient && <h1>This app is only available on LIFF browser</h1>*/}
+      {!isInClient && <h1>This app is only available on LIFF browser</h1>}
     </>
   )
 }
