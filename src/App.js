@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./routes/Home";
 import { LiffRoot } from "./LiffRoot";
-import { LiffCheckIn } from "./routes/LiffCheckIn";
+import { LiffWakeUp } from "./routes/LiffWakeUp";
 import { LiffReview } from "./routes/LiffReview";
 import { LiffSignUp } from "./routes/LiffSignUp";
 
@@ -19,7 +19,7 @@ const App = () => {
 
         <Route path="/liff/" element={<LiffRoot />} />
         <Route path="/liff/main" element={<Liff />} />
-        <Route path="/liff/checkin" element={<LiffCheckIn />} />
+        <Route path="/liff/wakeup" element={<LiffWakeUp />} />
         <Route path="/liff/review" element={<LiffReview />} />
         <Route path="/liff/signup" element={<LiffSignUp />} />
 
