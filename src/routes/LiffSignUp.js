@@ -25,14 +25,13 @@ export const LiffSignUp = () => {
         },
         {
           headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${idToken}`,
           },
         },
       );
       setLog("signup success" + JSON.stringify(res.data));
     } catch (err) {
-      setLog("signup failed" + JSON.stringify(err.response));
+      setLog("signup failed" + JSON.stringify(err));
     }
   };
 
@@ -40,7 +39,7 @@ export const LiffSignUp = () => {
     (async () => {
       await initLiff();
       const idToken = liff.getIDToken();
-      const profile = liff.getProfile();
+      const profile = await liff.getProfile();
       const isSuccessSignUp = await signup(idToken, profile);
       if (isSuccessSignUp) {
         liff.closeWindow();
@@ -50,7 +49,7 @@ export const LiffSignUp = () => {
 
   return (
     <div>
-      <h1>登録中</h1>
+      <h1>登録</h1>
       <p>{log}</p>
     </div>
   );
