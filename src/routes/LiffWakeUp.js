@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import liff from "@line/liff";
 //import axios from "axios";
 //const BASE_URL = process.env.BASE_URL;
 
-export const LiffCheckIn = () => {
+export const LiffWakeUp = () => {
   const [post, setPost] = useState("");
   const [error, setError] = useState("");
+  const search = useLocation().search;
+  const query = new URLSearchParams(search);
+  const timestamp = query.get("timestamp");
 
   const initLiff = async () => {
     try {
@@ -40,6 +44,7 @@ export const LiffCheckIn = () => {
       <div>
         <p>yyyy/MM/dd</p>
         <p>mm:ss</p>
+        <p>{timestamp}</p>
         <p>★</p>
       </div>
       <div>
