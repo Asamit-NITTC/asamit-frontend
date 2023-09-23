@@ -5,6 +5,7 @@ import { LiffRoot } from "./LiffRoot";
 import { LiffWakeUp } from "./routes/LiffWakeUp";
 import { LiffReview } from "./routes/LiffReview";
 import { LiffSignUp } from "./routes/LiffSignUp";
+import { LiffSetTime } from "./routes/LiffSetTime";
 
 import { Liff } from "./routes/Liff";
 import { Profile } from "./routes/Profile";
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/liff/wakeup" element={<LiffWakeUp />} />
         <Route path="/liff/review" element={<LiffReview />} />
         <Route path="/liff/signup" element={<LiffSignUp />} />
+        <Route path="/liff/setTime" element={<LiffSetTime />} />
 
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
