@@ -27,15 +27,28 @@ module.exports = merge(common,  {
         allowedHosts: [
           ".ngrok-free.app"
         ],
-        /*
         proxy: {
-            '/api/**': {
-                target: 'http://localhost:3000',
+            '/handler/**': {
+                target: 'http://localhost:3001',
                 secure: false,
                 logLevel: 'debug',
+            },
+            '/users/**': {
+              target: 'http://localhost:3000',
+              secure: false,
+              logLevel: 'debug'
+            },
+            '/target-time/**': {
+              target: 'http://localhost:3000',
+              secure: false,
+              logLevel: 'debug'
+            },
+            '/wake/**': {
+              target: 'http://localhost:3000',
+              secure: false,
+              logLevel: 'debug'
             }
         }
-        */
     },
 
 })
