@@ -9,6 +9,7 @@ export const LiffRoot = () => {
       //if (!liff.isInClient()) setIsInClient(false);
       if (!liff.isLoggedIn()) {
         liff.login();
+        setIsInClient(true);
       }
     })()
   }, []);
