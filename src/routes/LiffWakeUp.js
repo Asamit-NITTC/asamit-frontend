@@ -4,12 +4,12 @@ import liff from "@line/liff";
 import axios from "axios";
 const BASE_URL = process.env.BASE_URL;
 
-export const LiffWakeUp = () => {
+export const LiffWakeUp = (props) => {
   const [post, setPost] = useState("");
   const [error, setError] = useState("");
   const search = useLocation().search;
   const query = new URLSearchParams(search);
-  const timestamp = query.get("timestamp");
+  const timestamp = parseInt(query.get("timestamp"), 10);
 
   const initLiff = async () => {
     try {
@@ -22,13 +22,14 @@ export const LiffWakeUp = () => {
   const postReport = async () => {
     const url = new URL(`${BASE_URL}/wake/report`);
     const idToken = liff.getIDToken();
+    const dt = new Date(timestamp);
     try {
       const res = await axios.post(
         url,
         {
-          //uid: "",
-          wakeUpTime: "2023-06-27T00:00:00+10:00",
-          comment: "oha",
+          uid: props.uid,
+          wakeUpTime: dt.toISOString(),
+          comment: post,
         },
         {
           headers: {
@@ -36,7 +37,7 @@ export const LiffWakeUp = () => {
           },
         },
       );
-      setError("posted " + res.data);
+      setError("posted " + JSON.stringify(res.data));
     } catch (err) {
       const errMsg = JSON.stringify(err.response);
       setError("failed to post report " + errMsg);
