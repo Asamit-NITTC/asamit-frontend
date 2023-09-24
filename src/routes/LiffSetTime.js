@@ -4,7 +4,7 @@ import liff from "@line/liff";
 import axios from "axios";
 const BASE_URL = process.env.BASE_URL;
 
-export const LiffSetTime = () => {
+export const LiffSetTime = (props) => {
   const [log, setLog] = useState("");
   const search = useLocation().search;
   const query = new URLSearchParams(search);
@@ -23,7 +23,10 @@ export const LiffSetTime = () => {
     try {
       const res = await axios.put(
         url,
-        { targetTime: `2023-06-27T${targetTime}:00+10:00` },
+        {
+          uid: props.uid,
+          targetTime: `2023-06-27T${targetTime}:00+10:00`,
+        },
         {
           headers: {
             Authorization: `Bearer ${idToken}`,
