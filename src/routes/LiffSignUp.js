@@ -3,7 +3,7 @@ import liff from "@line/liff";
 import axios from "axios";
 const BASE_URL = process.env.BASE_URL;
 
-export const LiffSignUp = () => {
+export const LiffSignUp = (props) => {
   const [log, setLog] = useState("");
 
   const initLiff = async () => {
@@ -30,6 +30,8 @@ export const LiffSignUp = () => {
         },
       );
       setLog("signup success" + JSON.stringify(res.data));
+      const uid = res.data.uid;
+      props.setCookieUid(uid);
     } catch (err) {
       const errMsg = err.response.data.error;
       setLog("signup failed " + errMsg);
