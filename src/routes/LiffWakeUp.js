@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import liff from "@line/liff";
-//import axios from "axios";
-//const BASE_URL = process.env.BASE_URL;
+import axios from "axios";
+const BASE_URL = process.env.BASE_URL;
 
 export const LiffWakeUp = () => {
   const [post, setPost] = useState("");
@@ -19,6 +19,30 @@ export const LiffWakeUp = () => {
     }
   };
 
+  const postReport = async () => {
+    const url = new URL(`${BASE_URL}/wake/report`);
+    const idToken = liff.getIDToken();
+    try {
+      const res = await axios.post(
+        url,
+        {
+          //uid: "",
+          wakeUpTime: "2023-06-27T00:00:00+10:00",
+          comment: "oha",
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${idToken}`,
+          },
+        },
+      );
+      setError("posted " + res.data);
+    } catch (err) {
+      const errMsg = JSON.stringify(err.response);
+      setError("failed to post report " + errMsg);
+    }
+  };
+
   const handleTextChange = (event) => {
     const currentVal = event.target.value;
     setPost(currentVal);
@@ -26,6 +50,7 @@ export const LiffWakeUp = () => {
 
   const handleSubmit = () => {
     /* TODO: 送信 */
+    postReport();
   };
 
   useEffect(() => {
