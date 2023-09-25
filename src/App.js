@@ -19,7 +19,6 @@ const App = () => {
   };
   return (
     <div>
-      <p>current_uid: { cookies.uid }</p>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/get-id-token" element={<Liff />} />
@@ -34,6 +33,7 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <p>current_uid: { cookies.uid }</p>
     </div>
   );
 };

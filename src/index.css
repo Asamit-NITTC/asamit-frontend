@@ -1,0 +1,26 @@
+body{
+    font-family:'Segoe UI';
+    background-color:rgb(255, 217, 93);/*rgb(247,205,70)*/
+    margin: 0px;
+    padding: 0px;
+    /*line-height: 1.7;*/
+    border: none;
+    height: 100vh;
+}
+img{
+    max-width:100%;
+}
+.main {
+  margin: 20px;
+  max-width: 1000px;
+  line-height: 1;
+  font: red;
+}
+
+.block {
+  background-color: #FFFFFF;
+  text-align: center;
+  padding:20px 0 20px 0;
+  border-radius:50px;
+  border:7px solid #000000;
+}
