@@ -18,13 +18,32 @@ export const LiffSetTime = (props) => {
     }
   };
 
+  const fetchUID = async (idToken) => {
+    const url = `${BASE_URL}/users/inquiry-sub`;
+    try {
+      const res = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${idToken}`,
+        },
+      });
+      return res.data.uid;
+    } catch (err) {
+      throw new Error("uid取得に失敗しました" + err.response.data);
+    }
+  };
+
   const setTargetTime = async (idToken) => {
     const url = new URL(`${BASE_URL}/target-time/set`);
+    let currentUid = props.uid;
     try {
+      if (currentUid == null) {
+        currentUid = await fetchUID(idToken);
+        props.setCookieUid(currentUid);
+      }
       const res = await axios.put(
         url,
         {
-          uid: props.uid,
+          uid: currentUid,
           targetTime: `2023-06-27T${targetTime}:00+10:00`,
         },
         {
