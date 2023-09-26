@@ -25,10 +25,10 @@ const App = () => {
 
         <Route path="/liff/" element={<LiffRoot />} />
         <Route path="/liff/main" element={<Liff />} />
-        <Route path="/liff/wakeup" element={<LiffWakeUp uid={cookies.uid} />} />
-        <Route path="/liff/review" element={<LiffReview uid={cookies.uid} />} />
+        <Route path="/liff/wakeup" element={<LiffWakeUp uid={cookies.uid} setCookieUid={setCookieUid} />} />
+        <Route path="/liff/review" element={<LiffReview uid={cookies.uid} setCookieUid={setCookieUid} />} />
         <Route path="/liff/signup" element={<LiffSignUp setCookieUid={setCookieUid} />} />
-        <Route path="/liff/setTime" element={<LiffSetTime uid={cookies.uid} />} />
+        <Route path="/liff/setTime" element={<LiffSetTime uid={cookies.uid} setCookieUid={setCookieUid} />} />
 
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
