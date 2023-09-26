@@ -12,6 +12,9 @@ import { Liff } from "./routes/Liff";
 import { Profile } from "./routes/Profile";
 import { NotFound } from "./routes/NotFound";
 
+const DEBUG = process.env.DEBUG==="TRUE" ? true : false;
+if (DEBUG) console.log("debug mode");
+
 const App = () => {
   const [cookies, setCookie] = useCookies(["uid"]);
   const setCookieUid = (uid) => {
@@ -19,18 +22,15 @@ const App = () => {
   };
   return (
     <div>
-      <p>current_uid: { cookies.uid }</p>
+      { DEBUG && <p>current_uid: { cookies.uid }</p> }
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/get-id-token" element={<Liff />} />
-
         <Route path="/liff/" element={<LiffRoot />} />
         <Route path="/liff/main" element={<Liff />} />
-        <Route path="/liff/wakeup" element={<LiffWakeUp uid={cookies.uid} />} />
-        <Route path="/liff/review" element={<LiffReview uid={cookies.uid} />} />
+        <Route path="/liff/wakeup" element={<LiffWakeUp uid={cookies.uid} setCookieUid={setCookieUid} />} />
+        <Route path="/liff/review" element={<LiffReview uid={cookies.uid} setCookieUid={setCookieUid} />} />
         <Route path="/liff/signup" element={<LiffSignUp setCookieUid={setCookieUid} />} />
-        <Route path="/liff/setTime" element={<LiffSetTime uid={cookies.uid} />} />
-
+        <Route path="/liff/setTime" element={<LiffSetTime uid={cookies.uid} setCookieUid={setCookieUid} />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
