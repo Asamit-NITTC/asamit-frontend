@@ -19,15 +19,36 @@ export const LiffWakeUp = (props) => {
     }
   };
 
+  const fetchUID = async (idToken) => {
+    const url = `${BASE_URL}/users/inquiry-sub`;
+    try {
+      const res = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${idToken}`,
+        },
+      });
+      setError("uid fetched " + res.data.uid);
+      return res.data.uid;
+    } catch (err) {
+      throw new Error("uid取得に失敗しました" + err.response.data);
+    }
+  };
+
   const postReport = async () => {
     const url = new URL(`${BASE_URL}/wake/report`);
     const idToken = liff.getIDToken();
     const dt = new Date(timestamp);
+    // TODO: let使わないように
+    let currentUid = props.uid;
     try {
+      if (currentUid == null) {
+        currentUid = await fetchUID(idToken);
+        props.setCookieUid(currentUid);
+      }
       const res = await axios.post(
         url,
         {
-          uid: props.uid,
+          uid: currentUid,
           wakeUpTime: dt.toISOString(),
           comment: post,
         },
@@ -50,7 +71,6 @@ export const LiffWakeUp = (props) => {
   };
 
   const handleSubmit = () => {
-    /* TODO: 送信 */
     postReport();
   };
 
