@@ -42,14 +42,21 @@ export const LiffSignUp = (props) => {
       const errMsg = err.response.data.error;
       setLog("signup failed " + errMsg);
       if (errMsg === "登録済み") {
+        liff.sendMessages([
+          {
+            type: "text",
+            text: "登録済みです",
+          },
+        ]);
         liff.closeWindow();
+      } else {
+        liff.sendMessages([
+          {
+            type: "text",
+            text: "登録に失敗しました",
+          },
+        ]);
       }
-      liff.sendMessages([
-        {
-          type: "text",
-          text: "登録に失敗しました",
-        },
-      ]);
     }
   };
 
