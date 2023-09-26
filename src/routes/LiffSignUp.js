@@ -32,12 +32,24 @@ export const LiffSignUp = (props) => {
       setLog("signup success" + JSON.stringify(res.data));
       const uid = res.data.uid;
       props.setCookieUid(uid);
+      liff.sendMessages([
+        {
+          type: "text",
+          text: "登録完了\nID: ${uid}",
+        },
+      ]);
     } catch (err) {
       const errMsg = err.response.data.error;
       setLog("signup failed " + errMsg);
       if (errMsg === "登録済み") {
         liff.closeWindow();
       }
+      liff.sendMessages([
+        {
+          type: "text",
+          text: "登録に失敗しました",
+        },
+      ]);
     }
   };
 
