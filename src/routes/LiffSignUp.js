@@ -35,7 +35,7 @@ export const LiffSignUp = (props) => {
       liff.sendMessages([
         {
           type: "text",
-          text: "登録完了\nID: ${uid}",
+          text: `登録完了\nID: ${uid}`,
         },
       ]);
     } catch (err) {
