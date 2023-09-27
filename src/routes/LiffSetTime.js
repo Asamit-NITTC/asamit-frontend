@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import liff from "@line/liff";
 import axios from "axios";
 const BASE_URL = process.env.BASE_URL;
+const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
 export const LiffSetTime = (props) => {
   const [log, setLog] = useState("");
@@ -53,9 +54,24 @@ export const LiffSetTime = (props) => {
         },
       );
       setLog("time updated " + JSON.stringify(res.data));
+      liff.sendMessages([
+        {
+          type: "text",
+          text: `起床時刻を更新しました`,
+        },
+      ]);
+      liff.closeWindow();
     } catch (err) {
       const errMsg = JSON.stringify(err.response);
       setLog("failed to update time " + errMsg);
+      liff.sendMessages([
+        {
+          type: "text",
+          text: "時刻更新に失敗しました",
+        },
+      ]);
+    } finally {
+      liff.closeWindow();
     }
   };
 
@@ -69,10 +85,7 @@ export const LiffSetTime = (props) => {
 
   return (
     <div>
-      <div>
-        <h1>{targetTime}に起きます！</h1>
-        <p>{log}</p>
-      </div>
+      <div>{DEBUG && <p>{log}</p>}</div>
     </div>
   );
 };

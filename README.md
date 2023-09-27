@@ -17,6 +17,11 @@ And then run the development server:
 npm i
 npm run dev
 ```
+### Debug mode
+```sh
+echo "DEBUG=TRUE" >> .env
+```
+defalut: FALSE
 ### deploy
 ```sh
 touch .env.prod

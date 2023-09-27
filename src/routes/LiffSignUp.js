@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import liff from "@line/liff";
 import axios from "axios";
 const BASE_URL = process.env.BASE_URL;
+const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
 export const LiffSignUp = (props) => {
   const [log, setLog] = useState("");
@@ -48,7 +49,6 @@ export const LiffSignUp = (props) => {
             text: "登録済みです",
           },
         ]);
-        liff.closeWindow();
       } else {
         liff.sendMessages([
           {
@@ -57,6 +57,8 @@ export const LiffSignUp = (props) => {
           },
         ]);
       }
+    } finally {
+      liff.closeWindow();
     }
   };
 
@@ -72,10 +74,5 @@ export const LiffSignUp = (props) => {
     })();
   }, []);
 
-  return (
-    <div>
-      <h1>登録中</h1>
-      <p>{log}</p>
-    </div>
-  );
+  return <div>{DEBUG && <p>{log}</p>}</div>;
 };
