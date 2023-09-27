@@ -3,9 +3,11 @@ import { useLocation } from "react-router-dom";
 import liff from "@line/liff";
 import axios from "axios";
 const BASE_URL = process.env.BASE_URL;
+const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
 export const LiffWakeUp = (props) => {
   const [post, setPost] = useState("");
+  const [log, setLog] = useState("");
   const [error, setError] = useState("");
   const search = useLocation().search;
   const query = new URLSearchParams(search);
@@ -60,10 +62,24 @@ export const LiffWakeUp = (props) => {
           },
         },
       );
-      setError("posted " + JSON.stringify(res.data));
+      setLog("posted " + JSON.stringify(res.data));
+      liff.sendMessages([
+        {
+          type: "text",
+          text: "起床報告を記録しました",
+        },
+      ]);
     } catch (err) {
       const errMsg = JSON.stringify(err.response);
-      setError("failed to post report " + errMsg);
+      setLog("failed to post report " + errMsg);
+      liff.sendMessages([
+        {
+          type: "text",
+          text: "起床報告に失敗しました",
+        },
+      ]);
+    } finally {
+      liff.closeWindow();
     }
   };
 
@@ -84,6 +100,7 @@ export const LiffWakeUp = (props) => {
 
   return (
     <div className="main">
+      {DEBUG && <p>{log}</p>}
       {error && (
         <p>
           <code>{error}</code>
