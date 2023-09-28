@@ -99,7 +99,7 @@ export const LiffWakeUp = (props) => {
   }, []);
 
   return (
-    <div className="main">
+    <div className="main color-page">
       {DEBUG && <p>{log}</p>}
       {error && (
         <p>

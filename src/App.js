@@ -11,6 +11,7 @@ import { LiffSetTime } from "./routes/LiffSetTime";
 import { Liff } from "./routes/Liff";
 import { Profile } from "./routes/Profile";
 import { NotFound } from "./routes/NotFound";
+import { LiffFeedback } from "./routes/LiffFeedback";
 
 const DEBUG = process.env.DEBUG==="TRUE" ? true : false;
 if (DEBUG) console.log("debug mode");
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/liff/review" element={<LiffReview uid={cookies.uid} setCookieUid={setCookieUid} />} />
         <Route path="/liff/signup" element={<LiffSignUp setCookieUid={setCookieUid} />} />
         <Route path="/liff/setTime" element={<LiffSetTime uid={cookies.uid} setCookieUid={setCookieUid} />} />
+        <Route path="/liff/feedback" element={<LiffFeedback />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

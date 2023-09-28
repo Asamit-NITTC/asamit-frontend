@@ -1,11 +1,11 @@
 body{
     font-family:'Segoe UI';
-    background-color:rgb(255, 217, 93);/*rgb(247,205,70)*/
     margin: 0px;
     padding: 0px;
     /*line-height: 1.7;*/
     border: none;
     height: 100vh;
+    background-color:rgb(255, 217, 93);/*rgb(247,205,70)*/
 }
 img{
     max-width:100%;
