@@ -9,6 +9,7 @@ import { LiffSignUp } from "./routes/LiffSignUp";
 import { LiffSetTime } from "./routes/LiffSetTime";
 
 import { Liff } from "./routes/Liff";
+import { IdToken } from "./IdToken";
 import { Profile } from "./routes/Profile";
 import { NotFound } from "./routes/NotFound";
 import { LiffFeedback } from "./routes/LiffFeedback";
@@ -26,6 +27,7 @@ const App = () => {
       { DEBUG && <p>current_uid: { cookies.uid }</p> }
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/idtoken" element={<IdToken />} />
         <Route path="/liff/" element={<LiffRoot />} />
         <Route path="/liff/main" element={<Liff />} />
         <Route path="/liff/wakeup" element={<LiffWakeUp uid={cookies.uid} setCookieUid={setCookieUid} />} />

@@ -1,5 +1,5 @@
 body{
-    font-family:'Segoe UI';
+    font-family:'sans-serif';
     margin: 0px;
     padding: 0px;
     /*line-height: 1.7;*/
@@ -24,3 +24,22 @@ img{
   border-radius:50px;
   border:7px solid #000000;
 }
+
+input[type="submit"]{
+    border:none;
+    padding:15px;
+    width:150px;
+    background-color:#ff9d00;
+    color:#000000;
+    font-size: 1.0rem;
+    border-radius:10px;
+}
+
+.goal {
+  font-size: 1.4rem;
+}
+.goal textarea {
+  font-size: 1rem;
+  width: 80%;
+  height: 60px
+};
