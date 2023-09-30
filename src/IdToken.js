@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
-//import { useLocation } from "react-router-dom";
 import liff from "@line/liff";
-//import axios from "axios";
-//const BASE_URL = process.env.BASE_URL;
-//const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
-export const Liff = () => {
+export const IdToken = () => {
   const [profile, setProfile] = useState("");
+  const [idToken, setIdToken] = useState("");
   const initLiff = async () => {
     try {
       await liff.init({ liffId: process.env.REACT_APP_LIFF_ID });
+
     } catch (err) {
       console.log("Failed to init liff");
     }
@@ -21,17 +19,23 @@ export const Liff = () => {
     } catch (err) {
       console.log("Failed to get profile.");
     }
+    if (!liff.isLoggedIn()) {
+      liff.login({});
+    }
   };
 
   useEffect(() => {
     (async () => {
       await initLiff();
+      const gotIdToken = liff.getIDToken();
+      setIdToken(gotIdToken);
       await getUserProfile();
     })();
   }, []);
 
   return (
     <div className="main">
+      <p>{ idToken }</p>
       <img src={profile.pictureUrl} alt="アイコン画像" />
       <h2>こんにちは！{profile.displayName}さん！</h2>
       <p>累計ポイント: 0pt</p>

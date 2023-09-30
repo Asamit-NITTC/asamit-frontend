@@ -74,5 +74,11 @@ export const LiffSignUp = (props) => {
     })();
   }, []);
 
-  return <div>{DEBUG && <p>{log}</p>}</div>;
+  return (
+    <div>
+      {DEBUG && <p>{log}</p>}
+      <h2>登録中</h2>
+      <p>ウインドウを閉じないでください！</p>
+    </div>
+  );
 };

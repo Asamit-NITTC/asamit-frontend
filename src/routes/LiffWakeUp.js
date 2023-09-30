@@ -12,6 +12,8 @@ export const LiffWakeUp = (props) => {
   const search = useLocation().search;
   const query = new URLSearchParams(search);
   const timestamp = parseInt(query.get("timestamp"), 10);
+  const dt = new Date(timestamp);
+  const isoStr = dt.toISOString();
 
   const initLiff = async () => {
     try {
@@ -97,28 +99,28 @@ export const LiffWakeUp = (props) => {
   }, []);
 
   return (
-    <div>
+    <div className="main color-page">
       {DEBUG && <p>{log}</p>}
       {error && (
         <p>
           <code>{error}</code>
         </p>
       )}
-      <div>
-        <p>yyyy/MM/dd</p>
-        <p>mm:ss</p>
-        <p>{timestamp}</p>
-        <p>★</p>
-      </div>
-      <div>
-        <p>コメント</p>
-        <input
-          type="text"
-          value={post}
-          label="今日は何する？"
-          onChange={handleTextChange}
-        />
-        <input type="submit" onClick={handleSubmit} value="コメントを送信" />
+      <div className="block">
+        <div>
+          <p>{isoStr.slice(0, 10)}</p>
+          <p>{dt.getHours() + ":" + dt.getMinutes()}</p>
+        </div>
+        <div>
+          <p>コメント</p>
+          <textarea
+            type="text"
+            value={post}
+            label="今日は何する？"
+            onChange={handleTextChange}
+          />
+          <input type="submit" onClick={handleSubmit} value="コメントを送信" />
+        </div>
       </div>
       <div>
         <p>n日連続</p>

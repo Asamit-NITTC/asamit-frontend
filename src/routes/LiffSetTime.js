@@ -85,7 +85,9 @@ export const LiffSetTime = (props) => {
 
   return (
     <div>
-      <div>{DEBUG && <p>{log}</p>}</div>
+      {DEBUG && <p>{log}</p>}
+      <h2>登録中</h2>
+      <p>ウインドウを閉じないでください！</p>
     </div>
   );
 };
