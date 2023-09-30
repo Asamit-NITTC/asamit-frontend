@@ -24,6 +24,7 @@ export const LiffFeedback = () => {
         text: "feedback>> " + postFinal,
       },
     ]);
+    liff.closeWindow();
   };
 
   useEffect(() => {
