@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { Button } from "../components/Button";
 import { Block } from "../components/Block";
-import { TextArea } from "../components/TextArea";
+import { TextForm } from "../components/TextForm";
 const BASE_URL = process.env.BASE_URL;
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
@@ -16,7 +15,6 @@ liff.use(new CloseWindow());
 liff.use(new GetIDToken());
 
 export const LiffWakeUp = (props) => {
-  const [post, setPost] = useState("");
   const [log, setLog] = useState("");
   const [error, setError] = useState("");
   const search = useLocation().search;
@@ -48,7 +46,7 @@ export const LiffWakeUp = (props) => {
     }
   };
 
-  const postReport = async () => {
+  const postReport = async (postFinal) => {
     const url = new URL(`${BASE_URL}/wake/report`);
     const idToken = liff.getIDToken();
     const dt = new Date(timestamp);
@@ -64,7 +62,7 @@ export const LiffWakeUp = (props) => {
         {
           uid: currentUid,
           wakeUpTime: dt.toISOString(),
-          comment: post,
+          comment: postFinal,
         },
         {
           headers: {
@@ -93,15 +91,6 @@ export const LiffWakeUp = (props) => {
     }
   };
 
-  const handleTextChange = (event) => {
-    const currentVal = event.target.value;
-    setPost(currentVal);
-  };
-
-  const handleSubmit = () => {
-    postReport();
-  };
-
   useEffect(() => {
     (async () => {
       await initLiff();
@@ -123,10 +112,10 @@ export const LiffWakeUp = (props) => {
         </div>
         <div>
           <p>コメント</p>
-          <TextArea value={post} onChange={handleTextChange} />
-          <Button visual="primary" type="submit" onClick={handleSubmit}>
-            コメントを送信
-          </Button>
+          <TextForm
+            btnText="コメントを送信"
+            submitAction={(postFinal) => postReport(postFinal)}
+          />
         </div>
       </Block>
     </div>
