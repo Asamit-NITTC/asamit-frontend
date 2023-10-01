@@ -1,18 +1,19 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { useCookies } from "react-cookie";
+
 import { Home } from "./routes/Home";
 import { LiffRoot } from "./LiffRoot";
-import { LiffWakeUp } from "./routes/LiffWakeUp";
-import { LiffReview } from "./routes/LiffReview";
 import { LiffSignUp } from "./routes/LiffSignUp";
 import { LiffSetTime } from "./routes/LiffSetTime";
+import { LiffWakeUp } from "./routes/LiffWakeUp";
+import { LiffReview } from "./routes/LiffReview";
+import { LiffProfile } from "./routes/LiffProfile";
+import { LiffFeedback } from "./routes/LiffFeedback";
 
-import { Liff } from "./routes/Liff";
 import { IdToken } from "./IdToken";
 import { Profile } from "./routes/Profile";
 import { NotFound } from "./routes/NotFound";
-import { LiffFeedback } from "./routes/LiffFeedback";
 
 const DEBUG = process.env.DEBUG==="TRUE" ? true : false;
 if (DEBUG) console.log("debug mode");
@@ -29,7 +30,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/idtoken" element={<IdToken />} />
         <Route path="/liff/" element={<LiffRoot />} />
-        <Route path="/liff/main" element={<Liff />} />
+        <Route path="/liff/main" element={<LiffProfile />} />
         <Route path="/liff/wakeup" element={<LiffWakeUp uid={cookies.uid} setCookieUid={setCookieUid} />} />
         <Route path="/liff/review" element={<LiffReview uid={cookies.uid} setCookieUid={setCookieUid} />} />
         <Route path="/liff/signup" element={<LiffSignUp setCookieUid={setCookieUid} />} />

@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from "react";
-import liff from "@line/liff";
 import axios from "axios";
 const BASE_URL = process.env.BASE_URL;
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
+
+import liff from "@line/liff/core";
+import SendMessages from "@line/liff/send-messages";
+import CloseWindow from "@line/liff/close-window";
+import GetIDToken from "@line/liff/get-id-token";
+import GetProfile from "@line/liff/get-profile";
+liff.use(new SendMessages());
+liff.use(new CloseWindow());
+liff.use(new GetIDToken());
+liff.use(new GetProfile());
 
 export const LiffSignUp = (props) => {
   const [log, setLog] = useState("");

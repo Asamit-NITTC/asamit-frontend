@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import liff from "@line/liff";
 import axios from "axios";
 const BASE_URL = process.env.BASE_URL;
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
+
+import liff from "@line/liff/core";
+import SendMessages from "@line/liff/send-messages";
+import CloseWindow from "@line/liff/close-window";
+import GetIDToken from "@line/liff/get-id-token";
+liff.use(new SendMessages());
+liff.use(new CloseWindow());
+liff.use(new GetIDToken());
 
 export const LiffSetTime = (props) => {
   const [log, setLog] = useState("");
