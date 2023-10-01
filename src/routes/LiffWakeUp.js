@@ -129,10 +129,6 @@ export const LiffWakeUp = (props) => {
           </Button>
         </div>
       </Block>
-      <div>
-        <p>n日連続</p>
-        <button>SNSで共有</button>
-      </div>
     </div>
   );
 };

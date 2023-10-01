@@ -44,7 +44,7 @@ export const LiffFeedback = () => {
   return (
     <div className="main">
       <Block>
-        <h2>問い合わせフォーム</h2>
+        <p>問い合わせフォーム</p>
         <TextArea value={post} onChange={handleTextChange} />
         <Button visual="primary" type="submit" onClick={handleSubmit}>
           フィードバックを送信
