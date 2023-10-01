@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
-import liff from "@line/liff";
+
+import liff from "@line/liff/core";
+import GetIDToken from "@line/liff/get-id-token";
+import Login from "@line/liff/login";
+import IsLoggedIn from "@line/liff/is-logged-in";
+liff.use(new GetIDToken());
+liff.use(new Login());
+liff.use(new IsLoggedIn());
 
 export const IdToken = () => {
-  const [profile, setProfile] = useState("");
   const [idToken, setIdToken] = useState("");
   const initLiff = async () => {
     try {
@@ -10,14 +16,6 @@ export const IdToken = () => {
 
     } catch (err) {
       console.log("Failed to init liff");
-    }
-  };
-  const getUserProfile = async () => {
-    try {
-      const profile = await liff.getProfile();
-      setProfile(profile);
-    } catch (err) {
-      console.log("Failed to get profile.");
     }
     if (!liff.isLoggedIn()) {
       liff.login({});
@@ -29,17 +27,13 @@ export const IdToken = () => {
       await initLiff();
       const gotIdToken = liff.getIDToken();
       setIdToken(gotIdToken);
-      await getUserProfile();
     })();
   }, []);
 
   return (
     <div className="main">
+      <h2>IDtoken Generator</h2>
       <p>{ idToken }</p>
-      <img src={profile.pictureUrl} alt="アイコン画像" />
-      <h2>こんにちは！{profile.displayName}さん！</h2>
-      <p>累計ポイント: 0pt</p>
-      <p>連続起床日数: 0日</p>
     </div>
   );
 };
