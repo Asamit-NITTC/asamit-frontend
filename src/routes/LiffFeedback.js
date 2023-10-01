@@ -4,7 +4,7 @@ import liff from "@line/liff/core";
 import SendMessages from "@line/liff/send-messages";
 import CloseWindow from "@line/liff/close-window";
 import { TextForm } from "../components/TextForm";
-import { Block } from "../components/Block";
+import { Block } from "../ui/Block";
 liff.use(new SendMessages());
 liff.use(new CloseWindow());
 

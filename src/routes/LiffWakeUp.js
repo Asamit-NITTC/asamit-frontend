@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { Block } from "../components/Block";
+import { Block } from "../ui/Block";
 import { TextForm } from "../components/TextForm";
 const BASE_URL = process.env.BASE_URL;
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
