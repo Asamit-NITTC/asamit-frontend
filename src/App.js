@@ -7,7 +7,6 @@ import { LiffRoot } from "./LiffRoot";
 import { LiffSignUp } from "./routes/LiffSignUp";
 import { LiffSetTime } from "./routes/LiffSetTime";
 import { LiffWakeUp } from "./routes/LiffWakeUp";
-import { LiffReview } from "./routes/LiffReview";
 import { LiffProfile } from "./routes/LiffProfile";
 import { LiffFeedback } from "./routes/LiffFeedback";
 
@@ -32,7 +31,6 @@ const App = () => {
         <Route path="/liff/" element={<LiffRoot />} />
         <Route path="/liff/main" element={<LiffProfile />} />
         <Route path="/liff/wakeup" element={<LiffWakeUp uid={cookies.uid} setCookieUid={setCookieUid} />} />
-        <Route path="/liff/review" element={<LiffReview uid={cookies.uid} setCookieUid={setCookieUid} />} />
         <Route path="/liff/signup" element={<LiffSignUp setCookieUid={setCookieUid} />} />
         <Route path="/liff/setTime" element={<LiffSetTime uid={cookies.uid} setCookieUid={setCookieUid} />} />
         <Route path="/liff/feedback" element={<LiffFeedback />} />
