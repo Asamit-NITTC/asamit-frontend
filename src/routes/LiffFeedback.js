@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Button } from "../components/Button";
 
 import liff from "@line/liff/core";
 import SendMessages from "@line/liff/send-messages";
@@ -50,9 +51,9 @@ export const LiffFeedback = () => {
             onChange={handleTextChange}
           />
         </p>
-        <p className="goal submit">
-          <input onClick={handleSubmit} type="submit" value="feedbackを送信" />
-        </p>
+        <Button visual="primary" type="submit" onClick={handleSubmit}>
+          フィードバックを送信
+        </Button>
       </div>
     </div>
   );

@@ -1,3 +1,14 @@
+:root {
+  --background-yellow: #FFD95D;
+  --background-yellow-sub: #F7CD46;
+  --btn-yellow: #FF9d00;
+  --white: #fff
+  --black: #000
+  --red: #fc2d37
+  --gray: #3339;
+  --border-gray:#0000001a;
+}
+
 body{
     font-family:'sans-serif';
     margin: 0px;
@@ -5,7 +16,7 @@ body{
     /*line-height: 1.7;*/
     border: none;
     height: 100vh;
-    background-color:rgb(255, 217, 93);/*rgb(247,205,70)*/
+    background-color: var(--background-yellow);
 }
 img{
     max-width:100%;

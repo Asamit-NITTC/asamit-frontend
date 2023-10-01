@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { Button } from "../components/Button";
 const BASE_URL = process.env.BASE_URL;
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
@@ -126,7 +127,9 @@ export const LiffWakeUp = (props) => {
             label="今日は何する？"
             onChange={handleTextChange}
           />
-          <input type="submit" onClick={handleSubmit} value="コメントを送信" />
+          <Button visual="primary" type="submit" onClick={handleSubmit}>
+            コメントを送信
+          </Button>
         </div>
       </div>
       <div>
