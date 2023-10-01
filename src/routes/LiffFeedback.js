@@ -5,6 +5,7 @@ import liff from "@line/liff/core";
 import SendMessages from "@line/liff/send-messages";
 import CloseWindow from "@line/liff/close-window";
 import { TextArea } from "../components/TextArea";
+import { Block } from "../components/Block";
 liff.use(new SendMessages());
 liff.use(new CloseWindow());
 
@@ -42,13 +43,13 @@ export const LiffFeedback = () => {
 
   return (
     <div className="main">
-      <div className="block">
+      <Block>
         <h2>問い合わせフォーム</h2>
         <TextArea value={post} onChange={handleTextChange} />
         <Button visual="primary" type="submit" onClick={handleSubmit}>
           フィードバックを送信
         </Button>
-      </div>
+      </Block>
     </div>
   );
 };

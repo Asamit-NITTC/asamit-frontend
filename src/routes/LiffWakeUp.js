@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { Button } from "../components/Button";
+import { Block } from "../components/Block";
+import { TextArea } from "../components/TextArea";
 const BASE_URL = process.env.BASE_URL;
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
@@ -114,24 +116,19 @@ export const LiffWakeUp = (props) => {
           <code>{error}</code>
         </p>
       )}
-      <div className="block">
+      <Block>
         <div>
           <p>{isoStr.slice(0, 10)}</p>
           <p>{dt.getHours() + ":" + dt.getMinutes()}</p>
         </div>
         <div>
           <p>コメント</p>
-          <textarea
-            type="text"
-            value={post}
-            label="今日は何する？"
-            onChange={handleTextChange}
-          />
+          <TextArea value={post} onChange={handleTextChange} />
           <Button visual="primary" type="submit" onClick={handleSubmit}>
             コメントを送信
           </Button>
         </div>
-      </div>
+      </Block>
       <div>
         <p>n日連続</p>
         <button>SNSで共有</button>
