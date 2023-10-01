@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import liff from "@line/liff";
+
+import liff from "@line/liff/core";
+import SendMessages from "@line/liff/send-messages";
+import CloseWindow from "@line/liff/close-window";
+liff.use(new SendMessages());
+liff.use(new CloseWindow());
 
 export const LiffFeedback = () => {
   const [post, setPost] = useState("");

@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import liff from "@line/liff";
+
+import liff from "@line/liff/core";
+import IsLoggedIn from "@line/liff/is-logged-in"
+import Login from "@line/liff/login"
+liff.use(new IsLoggedIn());
+liff.use(new Login())
 
 export const LiffRoot = () => {
   const [isInClient, setIsInClient] = useState(true);

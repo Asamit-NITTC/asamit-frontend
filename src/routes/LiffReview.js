@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import liff from "@line/liff";
+import liff from "@line/liff/core";
 
 export const LiffReview = () => {
   const initLiff = async () => {

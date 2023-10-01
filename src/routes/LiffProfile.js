@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 //import { useLocation } from "react-router-dom";
-import liff from "@line/liff";
 //import axios from "axios";
 //const BASE_URL = process.env.BASE_URL;
 //const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
-export const Liff = () => {
+import liff from "@line/liff/core";
+import GetProfile from "@line/liff/get-profile";
+liff.use(new GetProfile());
+
+export const LiffProfile = () => {
   const [profile, setProfile] = useState("");
   const initLiff = async () => {
     try {
