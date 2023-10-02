@@ -2,12 +2,13 @@ import React from "react";
 import { useLiff } from "./hooks/useLiff";
 
 export const LiffRoot = () => {
-  const { liffObject, isInited } = useLiff();
-  //console.log({liffObject, isInited});
+  const { isLoggedIn, login, logout } = useLiff();
 
   return (
     <>
-      <p>isInited: {isInited}</p>
+      {!isLoggedIn && <button onClick={login}>ログイン</button>}
+      {isLoggedIn && <button onClick={logout}>ログアウト</button>}
+      {isLoggedIn && <p>isInited</p>}
       {/*!isInClient && <h1>This app is only available on LIFF browser</h1>*/}
     </>
   )
