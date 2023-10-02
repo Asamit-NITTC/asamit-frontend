@@ -23,6 +23,7 @@ export const useLiff = () => {
     if (isLoggedIn) return;
     (async () => {
       try {
+        console.log("initialize");
         await liff.init({ liffId: process.env.REACT_APP_LIFF_ID });
         setLiffObject(liff);
         if (liff.isLoggedIn()) setIsLoggedIn(true);
