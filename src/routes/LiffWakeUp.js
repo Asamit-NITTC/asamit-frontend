@@ -67,8 +67,7 @@ export const LiffWakeUp = (props) => {
       setLog("failed to post report " + errMsg);
       sendMessages("起床報告に失敗しました");
     } finally {
-      /** TODO: 閉じる */
-      //liff.closeWindow();
+      liffObject.closeWindow();
     }
   };
 

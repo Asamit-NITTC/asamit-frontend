@@ -39,16 +39,13 @@ export const LiffSignUp = (props) => {
         sendMessages("登録に失敗しました");
       }
     } finally {
-      //liff.closeWindow();
+      liffObject.closeWindow();
     }
   };
 
   useEffect(() => {
     (async () => {
-      const isSuccessSignUp = await signup(idToken, displayName);
-      if (isSuccessSignUp) {
-        //liff.closeWindow();
-      }
+      await signup(idToken, displayName);
     })();
   }, []);
 

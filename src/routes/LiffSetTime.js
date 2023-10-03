@@ -57,7 +57,7 @@ export const LiffSetTime = (props) => {
       setLog("failed to update time " + errMsg);
       sendMessages("時刻更新に失敗しました");
     } finally {
-      //liff.closeWindow();
+      liffObject.closeWindow();
     }
   };
 
