@@ -13,7 +13,6 @@ export const TextForm = ({ btnText, submitAction }) => {
         value={post}
         onChange={handleTextChange}
       />
-      ;
       <Button visual="primary" type="submit" onClick={() => submitAction(post)}>
         {btnText}
       </Button>
