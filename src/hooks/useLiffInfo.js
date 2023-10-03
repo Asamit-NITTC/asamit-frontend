@@ -1,38 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const useLiffInfo = (liffObject, isLoggedIn) => {
+  const [idToken, setIdToken] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [pictureUrl, setPictureUrl] = useState("");
+  /*
   (async () => {
     if (isLoggedIn) {
       try {
+        const gotIdToken = liffObject?.getIDToken();
+        setIdToken(gotIdToken);
         const profile = await liffObject?.getProfile();
         setDisplayName(profile.displayName);
         setPictureUrl(profile.pictureUrl);
+        console.log({gotIdToken, profile})
       } catch (err) {
         console.error({ err });
       }
     }
   })();
+  */
 
-  /*
   useEffect(() => {
-    (async() => {
+    (async () => {
       if (isLoggedIn) {
-      try {
-        const profile = await liffObject?.getProfile();
-        setDisplayName(profile.displayName);
-        setPictureUrl(profile.pictureUrl);
-      } catch(err) {
-        console.error({ err })
-      }
+        try {
+          const gotIdToken = liffObject?.getIDToken();
+          setIdToken(gotIdToken);
+          const profile = await liffObject?.getProfile();
+          setDisplayName(profile.displayName);
+          setPictureUrl(profile.pictureUrl);
+          console.log({ gotIdToken, profile });
+        } catch (err) {
+          console.error({ err });
+        }
       }
     })();
-  }, [isLoggedIn]);
-  */
+  }, [liffObject, isLoggedIn]);
 
   return {
     displayName,
     pictureUrl,
+    idToken,
   };
 };

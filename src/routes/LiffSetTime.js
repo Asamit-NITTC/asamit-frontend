@@ -1,30 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { useLiff } from "../hooks/useLiff";
+import { useLiffInfo } from "../hooks/useLiffInfo";
+import { useLiffMessage } from "../hooks/useLiffMessage";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 const BASE_URL = process.env.BASE_URL;
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
-import liff from "@line/liff/core";
-import SendMessages from "@line/liff/send-messages";
-import CloseWindow from "@line/liff/close-window";
-import GetIDToken from "@line/liff/get-id-token";
-liff.use(new SendMessages());
-liff.use(new CloseWindow());
-liff.use(new GetIDToken());
-
 export const LiffSetTime = (props) => {
+  const { liffObject, isLoggedIn } = useLiff();
+  const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
+  const { idToken } = useLiffInfo(liffObject, isLoggedIn);
   const [log, setLog] = useState("");
   const search = useLocation().search;
   const query = new URLSearchParams(search);
   const targetTime = query.get("target-time");
-
-  const initLiff = async () => {
-    try {
-      await liff.init({ liffId: process.env.REACT_APP_LIFF_ID });
-    } catch (err) {
-      console.log("Failed to init");
-    }
-  };
 
   const fetchUID = async (idToken) => {
     const url = `${BASE_URL}/users/inquiry-sub`;
@@ -61,34 +51,21 @@ export const LiffSetTime = (props) => {
         },
       );
       setLog("time updated " + JSON.stringify(res.data));
-      liff.sendMessages([
-        {
-          type: "text",
-          text: `起床時刻を更新しました`,
-        },
-      ]);
-      liff.closeWindow();
+      sendMessages("起床時刻を更新しました");
     } catch (err) {
       const errMsg = JSON.stringify(err.response);
       setLog("failed to update time " + errMsg);
-      liff.sendMessages([
-        {
-          type: "text",
-          text: "時刻更新に失敗しました",
-        },
-      ]);
+      sendMessages("時刻更新に失敗しました");
     } finally {
-      liff.closeWindow();
+      //liff.closeWindow();
     }
   };
 
   useEffect(() => {
     (async () => {
-      await initLiff();
-      const idToken = liff.getIDToken();
-      await setTargetTime(idToken);
+      if (idToken) await setTargetTime(idToken);
     })();
-  }, []);
+  }, [idToken]);
 
   return (
     <div>
