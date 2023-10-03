@@ -1,37 +1,16 @@
-import React, { useEffect } from "react";
-
-import liff from "@line/liff/core";
-import SendMessages from "@line/liff/send-messages";
-import CloseWindow from "@line/liff/close-window";
+import React from "react";
+import { useLiff } from "../hooks/useLiff";
+import { useLiffMessage } from "../hooks/useLiffMessage";
 import { TextForm } from "../components/TextForm";
 import { Block } from "../ui/Block";
-liff.use(new SendMessages());
-liff.use(new CloseWindow());
 
 export const LiffFeedback = () => {
-  const initLiff = async () => {
-    try {
-      await liff.init({ liffId: process.env.REACT_APP_LIFF_ID });
-    } catch (err) {
-      console.log("Failed to init liff");
-    }
+  const { liffObject, isLoggedIn } = useLiff();
+  const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
+  const sendFeedback = (postFinal) => {
+    sendMessages("feedback>> " + postFinal);
+    liffObject.closeWindow();
   };
-
-  const handleSubmit = (postFinal) => {
-    liff.sendMessages([
-      {
-        type: "text",
-        text: "feedback>> " + postFinal,
-      },
-    ]);
-    liff.closeWindow();
-  };
-
-  useEffect(() => {
-    (async () => {
-      await initLiff();
-    })();
-  }, []);
 
   return (
     <div className="main">
@@ -39,7 +18,7 @@ export const LiffFeedback = () => {
         <p>問い合わせフォーム</p>
         <TextForm
           btnText="フィードバックを送信"
-          submitAction={(postFinal) => handleSubmit(postFinal)}
+          submitAction={(postFinal) => sendFeedback(postFinal)}
         />
       </Block>
     </div>

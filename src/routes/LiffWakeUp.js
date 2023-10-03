@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useLiff } from "../hooks/useLiff";
+import { useLiffInfo } from "../hooks/useLiffInfo";
+import { useLiffMessage } from "../hooks/useLiffMessage";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { Block } from "../ui/Block";
@@ -6,15 +9,10 @@ import { TextForm } from "../components/TextForm";
 const BASE_URL = process.env.BASE_URL;
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
-import liff from "@line/liff/core";
-import SendMessages from "@line/liff/send-messages";
-import CloseWindow from "@line/liff/close-window";
-import GetIDToken from "@line/liff/get-id-token";
-liff.use(new SendMessages());
-liff.use(new CloseWindow());
-liff.use(new GetIDToken());
-
 export const LiffWakeUp = (props) => {
+  const { liffObject, isLoggedIn } = useLiff();
+  const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
+  const { idToken } = useLiffInfo(liffObject, isLoggedIn);
   const [log, setLog] = useState("");
   const [error, setError] = useState("");
   const search = useLocation().search;
@@ -22,14 +20,6 @@ export const LiffWakeUp = (props) => {
   const timestamp = parseInt(query.get("timestamp"), 10);
   const dt = new Date(timestamp);
   const isoStr = dt.toISOString();
-
-  const initLiff = async () => {
-    try {
-      await liff.init({ liffId: process.env.REACT_APP_LIFF_ID });
-    } catch (err) {
-      setError("Failed to init liff");
-    }
-  };
 
   const fetchUID = async (idToken) => {
     const url = `${BASE_URL}/users/inquiry-sub`;
@@ -48,7 +38,7 @@ export const LiffWakeUp = (props) => {
 
   const postReport = async (postFinal) => {
     const url = new URL(`${BASE_URL}/wake/report`);
-    const idToken = liff.getIDToken();
+    //const idToken = liff.getIDToken();
     const dt = new Date(timestamp);
     // TODO: let使わないように
     let currentUid = props.uid;
@@ -71,31 +61,15 @@ export const LiffWakeUp = (props) => {
         },
       );
       setLog("posted " + JSON.stringify(res.data));
-      liff.sendMessages([
-        {
-          type: "text",
-          text: "起床報告を記録しました",
-        },
-      ]);
+      sendMessages("起床報告を記録しました");
     } catch (err) {
       const errMsg = JSON.stringify(err.response);
       setLog("failed to post report " + errMsg);
-      liff.sendMessages([
-        {
-          type: "text",
-          text: "起床報告に失敗しました",
-        },
-      ]);
+      sendMessages("起床報告に失敗しました");
     } finally {
-      liff.closeWindow();
+      liffObject.closeWindow();
     }
   };
-
-  useEffect(() => {
-    (async () => {
-      await initLiff();
-    })();
-  }, []);
 
   return (
     <div className="main color-page">
