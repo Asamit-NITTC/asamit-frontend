@@ -38,16 +38,17 @@ export const LiffSignUp = (props) => {
       } else {
         sendMessages("登録に失敗しました");
       }
-    } finally {
-      liffObject.closeWindow();
     }
   };
 
   useEffect(() => {
     (async () => {
+      if (Object.keys(liffObject).length === 0 || !idToken || !displayName)
+        return;
       await signup(idToken, displayName);
+      liffObject?.closeWindow();
     })();
-  }, []);
+  }, [idToken, displayName]);
 
   return (
     <div>
