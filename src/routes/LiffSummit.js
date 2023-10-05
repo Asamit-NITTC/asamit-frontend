@@ -1,6 +1,8 @@
 import React from "react";
 import { useLiff } from "../hooks/useLiff";
 import { useLiffInfo } from "../hooks/useLiffInfo";
+import { SummitMain } from "../components/SummitMain";
+import { SummitPending } from "../components/SummitPending";
 //import { useLocation } from "react-router-dom";
 //import axios from "axios";
 //const BASE_URL = process.env.BASE_URL;
@@ -14,6 +16,8 @@ export const LiffSummit = () => {
   return (
     <div className="main">
       <h1>サミットモード</h1>
+      <SummitPending />
+      {false && <SummitMain />}
     </div>
   );
 };
