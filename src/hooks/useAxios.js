@@ -24,11 +24,13 @@ export const useAxios = () => {
           data: JSON.parse(body),
           headers: JSON.parse(headers),
         });
+        console.log(res);
         setData(res.data);
         return res.data;
       } catch (err) {
+        console.log(err);
         setError(err.response.data);
-        throw new Error("failed to fetch " + JSON.stringify(err.response.data));
+        throw err;
       } finally {
         setIsLoading(false);
       }
