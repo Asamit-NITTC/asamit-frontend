@@ -2,50 +2,39 @@ import React, { useState, useEffect } from "react";
 import { useLiff } from "../hooks/useLiff";
 import { useLiffInfo } from "../hooks/useLiffInfo";
 import { useLiffMessage } from "../hooks/useLiffMessage";
-import axios from "axios";
-const BASE_URL = process.env.BASE_URL;
+import { useAxios } from "../hooks/useAxios";
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
 export const LiffSignUp = (props) => {
+  const [log, setLog] = useState("");
   const { liffObject, isLoggedIn } = useLiff();
   const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
   const { idToken, displayName } = useLiffInfo(liffObject, isLoggedIn);
-  const [log, setLog] = useState("");
-
-  const signup = async (idToken, displayName) => {
-    const url = new URL(`${BASE_URL}/users/signup`);
-    try {
-      const res = await axios.post(
-        url,
-        {
-          name: displayName,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${idToken}`,
-          },
-        },
-      );
-      setLog("signup success" + JSON.stringify(res.data));
-      const uid = res.data.uid;
-      props.setCookieUid(uid);
-      sendMessages(`登録完了\nID: ${uid}`);
-    } catch (err) {
-      const errMsg = err.response.data.error;
-      setLog("signup failed " + errMsg);
-      if (errMsg === "登録済み") {
-        sendMessages("登録済みです");
-      } else {
-        sendMessages("登録に失敗しました");
-      }
-    }
-  };
+  const [{ isLoading }, doFetch] = useAxios();
 
   useEffect(() => {
     (async () => {
       if (Object.keys(liffObject).length === 0 || !idToken || !displayName)
         return;
-      await signup(idToken, displayName);
+      try {
+        const res = await doFetch({
+          method: "post",
+          url: "/users/signup",
+          body: JSON.stringify({ name: displayName }),
+          headers: JSON.stringify({ Authorization: `Bearer ${idToken}` }),
+        });
+        setLog("signup success " + JSON.stringify(res));
+        const uid = res.uid;
+        props.setCookieUid(uid);
+        sendMessages(`登録完了\nID: ${uid}`);
+      } catch (err) {
+        setLog("signup failed " + JSON.stringify(err));
+        if (err.response.status === 500) {
+          sendMessages("登録済みです");
+        } else {
+          sendMessages("登録に失敗しました");
+        }
+      }
       liffObject?.closeWindow();
     })();
   }, [idToken, displayName]);
@@ -53,6 +42,7 @@ export const LiffSignUp = (props) => {
   return (
     <div>
       {DEBUG && <p>{log}</p>}
+      {DEBUG && isLoading && <p>Loading</p>}
       <h2>登録中</h2>
       <p>ウインドウを閉じないでください！</p>
     </div>
