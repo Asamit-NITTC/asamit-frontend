@@ -1,6 +1,7 @@
 import React from "react";
 import { Block } from "../ui/Block";
 import styles from "./Login.module.css";
+//import btnImage from "../images/btn-login.png"
 
 export const Login = ({ login }) => {
   return (
@@ -13,7 +14,7 @@ export const Login = ({ login }) => {
           </p>
           <button onClick={login}>
             <img
-              src="/images/btn_login_base.png"
+              src={"https://i.gyazo.com/c99751638374e7bdf6e2fb15c9bee5c3.png"}
               className={styles.btnlogin}
               alt="LINEでログイン"
             />

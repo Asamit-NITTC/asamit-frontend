@@ -7,7 +7,7 @@ export const Home = () => {
     <>
       <h1>Asamit TOP</h1>
       <p>ルートページは説明を表示させたい</p>
-      <Link href="/app/home">
+      <Link to="/app/home">
         <Button>Asamitアプリはここから！</Button>
       </Link>
     </>
