@@ -47,6 +47,11 @@ module.exports = merge(common,  {
               target: 'http://localhost:3000',
               secure: false,
               logLevel: 'debug'
+            },
+            '/summit/**': {
+              target: 'http://localhost:3000',
+              secure: false,
+              logLevel: 'debug'
             }
         }
     },
