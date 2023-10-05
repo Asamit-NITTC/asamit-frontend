@@ -2,7 +2,7 @@ import React from "react";
 import { Block } from "../ui/Block";
 import styles from "./Login.module.css";
 
-export const Login = () => {
+export const Login = ({ login }) => {
   return (
     <>
       <Block>
@@ -11,7 +11,7 @@ export const Login = () => {
           <p>
             アプリにログインすると自分の実績や複数人での朝活などの機能が解放されます！
           </p>
-          <button>
+          <button onClick={login}>
             <img
               src="/images/btn_login_base.png"
               className={styles.btnlogin}

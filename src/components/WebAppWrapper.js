@@ -2,17 +2,18 @@ import React from "react";
 
 import { Header } from "../ui/Header";
 import { Footer } from "../ui/Footer";
-import { Login } from "../components/Login";
-
-//const { isLoggedIn, login, logout } = useLiff();
+import { Login } from "../ui/Login";
+import { useLiff } from "../hooks/useLiff";
 
 export const WebAppWrapper = ({ title, children, ...props }) => {
+  const { isLoggedIn, login } = useLiff();
+
   return (
     <div {...props}>
       <Header title={title} />
       <main>
-        <Login />
-        {children}
+        {!isLoggedIn && <Login login={login} />}
+        {isLoggedIn && children}
       </main>
       <Footer />
     </div>
