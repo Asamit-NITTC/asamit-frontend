@@ -1,0 +1,26 @@
+.root {
+  background-color: var(--background-yellow-sub);
+  height: 10vh;
+  text-align: center;
+  position: fixed;
+  width: 100vw;
+  bottom: 0;
+}
+.nav {
+  line-height: 10vh;
+}
+ul {
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  align-items: center;
+}
+ul li {
+  display: block;
+  text-decoration: none;
+  color: var(--black);
+}
+a {
+  color: black;
+}

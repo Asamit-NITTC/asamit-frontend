@@ -1,0 +1,8 @@
+.root {
+  background-color: var(--background-yellow-sub);
+  height: 10vh;
+  text-align: center;
+}
+.title {
+  line-height: 10vh;
+}
