@@ -15,6 +15,9 @@ import { LiffHome } from "./routes/LiffHome";
 import { IdToken } from "./IdToken";
 import { NotFound } from "./routes/NotFound";
 
+import { Header } from "./ui/Header";
+import { Footer } from "./ui/Footer";
+
 const DEBUG = process.env.DEBUG==="TRUE" ? true : false;
 if (DEBUG) console.log("debug mode");
 
@@ -25,7 +28,7 @@ const App = () => {
   };
   return (
     <div>
-      { DEBUG && <p>current_uid: { cookies.uid }</p> }
+      <Header title="テスト" />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/idtoken" element={<IdToken />} />
@@ -40,6 +43,8 @@ const App = () => {
         <Route path="/app/feedback" element={<LiffFeedback />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      { DEBUG && <p>current_uid: { cookies.uid }</p> }
+      <Footer />
     </div>
   );
 };
