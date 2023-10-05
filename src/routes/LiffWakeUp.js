@@ -56,7 +56,7 @@ export const LiffWakeUp = (props) => {
   }, [idToken, uid]);
 
   return (
-    <div className="main color-page">
+    <main>
       {DEBUG && <p>{log}</p>}
       {DEBUG && isLoading && <p>Loading</p>}
       {error && (
@@ -77,6 +77,6 @@ export const LiffWakeUp = (props) => {
           />
         </div>
       </Block>
-    </div>
+    </main>
   );
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import { useLiff } from "../hooks/useLiff";
 import { useLiffInfo } from "../hooks/useLiffInfo";
+import { WebAppWrapper } from "../components/WebAppWrapper";
 //import { useLocation } from "react-router-dom";
 //import axios from "axios";
 //const BASE_URL = process.env.BASE_URL;
@@ -12,11 +13,11 @@ export const LiffProfile = () => {
   console.log({ displayName });
 
   return (
-    <div className="main">
+    <WebAppWrapper title="実績">
       <img src={pictureUrl} alt="アイコン画像" />
       <h2>こんにちは！{displayName}さん！</h2>
       <p>累計ポイント: 0pt</p>
       <p>連続起床日数: 0日</p>
-    </div>
+    </WebAppWrapper>
   );
 };

@@ -13,7 +13,7 @@ export const LiffFeedback = () => {
   };
 
   return (
-    <div className="main">
+    <main>
       <Block>
         <p>問い合わせフォーム</p>
         <TextForm
@@ -21,6 +21,6 @@ export const LiffFeedback = () => {
           submitAction={(postFinal) => sendFeedback(postFinal)}
         />
       </Block>
-    </div>
+    </main>
   );
 };

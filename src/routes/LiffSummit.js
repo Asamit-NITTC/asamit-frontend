@@ -1,6 +1,7 @@
 import React from "react";
 import { useLiff } from "../hooks/useLiff";
 import { useLiffInfo } from "../hooks/useLiffInfo";
+import { WebAppWrapper } from "../components/WebAppWrapper";
 //import { useLocation } from "react-router-dom";
 //import axios from "axios";
 //const BASE_URL = process.env.BASE_URL;
@@ -12,8 +13,8 @@ export const LiffSummit = () => {
   console.log({ displayName });
 
   return (
-    <div className="main">
-      <h1>サミットモード</h1>
-    </div>
+    <WebAppWrapper title="サミットモード">
+      <p>サミットモード</p>
+    </WebAppWrapper>
   );
 };
