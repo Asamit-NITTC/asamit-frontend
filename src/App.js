@@ -16,6 +16,7 @@ import { IdToken } from "./IdToken";
 import { NotFound } from "./routes/NotFound";
 
 import { Header } from "./ui/Header";
+import { Footer } from "./ui/Footer";
 
 const DEBUG = process.env.DEBUG==="TRUE" ? true : false;
 if (DEBUG) console.log("debug mode");
@@ -43,6 +44,7 @@ const App = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
       { DEBUG && <p>current_uid: { cookies.uid }</p> }
+      <Footer />
     </div>
   );
 };
