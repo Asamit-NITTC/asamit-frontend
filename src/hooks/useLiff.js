@@ -7,6 +7,7 @@ import GetIDToken from "@line/liff/get-id-token";
 import GetProfile from "@line/liff/get-profile";
 import SendMessages from "@line/liff/send-messages";
 import CloseWindow from "@line/liff/close-window";
+import IsInClient from "@line/liff/is-in-client";
 liff.use(new IsLoggedIn());
 liff.use(new Login());
 liff.use(new Logout());
@@ -14,10 +15,12 @@ liff.use(new GetIDToken());
 liff.use(new GetProfile());
 liff.use(new SendMessages());
 liff.use(new CloseWindow());
+liff.use(new IsInClient());
 
 export const useLiff = () => {
   const [liffObject, setLiffObject] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isInClient, setIsInClient] = useState(true);
 
   const login = () => {
     liffObject?.login();
@@ -25,6 +28,7 @@ export const useLiff = () => {
 
   const logout = () => {
     liffObject?.logout();
+    setIsLoggedIn(false);
   };
 
   useEffect(() => {
@@ -34,7 +38,8 @@ export const useLiff = () => {
         console.log("initialize");
         await liff.init({ liffId: process.env.REACT_APP_LIFF_ID });
         setLiffObject(liff);
-        if (liff.isLoggedIn()) setIsLoggedIn(true);
+        setIsLoggedIn(liff.isLoggedIn());
+        setIsInClient(liff.isInClient());
       } catch (err) {
         console.error({ err });
       }
@@ -44,6 +49,7 @@ export const useLiff = () => {
   return {
     liffObject,
     isLoggedIn,
+    isInClient,
     login,
     logout,
   };

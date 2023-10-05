@@ -48,11 +48,11 @@ export const LiffSetTime = (props) => {
   }, [idToken, uid]);
 
   return (
-    <div>
+    <main>
       {DEBUG && <p>{log}</p>}
       {DEBUG && isLoading && <p>Loading</p>}
       <h2>登録中</h2>
       <p>ウインドウを閉じないでください！</p>
-    </div>
+    </main>
   );
 };

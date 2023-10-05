@@ -15,9 +15,6 @@ import { LiffHome } from "./routes/LiffHome";
 import { IdToken } from "./IdToken";
 import { NotFound } from "./routes/NotFound";
 
-import { Header } from "./ui/Header";
-import { Footer } from "./ui/Footer";
-
 const DEBUG = process.env.DEBUG==="TRUE" ? true : false;
 if (DEBUG) console.log("debug mode");
 
@@ -28,15 +25,14 @@ const App = () => {
   };
   return (
     <div>
-      <Header title="テスト" />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/idtoken" element={<IdToken />} />
-        <Route path="/app" element={<LiffRoot />} />
         <Route path="/app/summit" element={<LiffSummit />} />
         <Route path="/app/home" element={<LiffHome />} />
         <Route path="/app/main" element={<LiffProfile />} />
 
+        <Route path="/app" element={<LiffRoot />} />
         <Route path="/app/wakeup" element={<LiffWakeUp uid={cookies.uid} setCookieUid={setCookieUid} />} />
         <Route path="/app/signup" element={<LiffSignUp setCookieUid={setCookieUid} />} />
         <Route path="/app/setTime" element={<LiffSetTime uid={cookies.uid} setCookieUid={setCookieUid} />} />
@@ -44,7 +40,6 @@ const App = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
       { DEBUG && <p>current_uid: { cookies.uid }</p> }
-      <Footer />
     </div>
   );
 };
