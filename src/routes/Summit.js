@@ -5,12 +5,10 @@ import { WebAppWrapper } from "../components/WebAppWrapper";
 //const BASE_URL = process.env.BASE_URL;
 //const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
-export const LiffHome = () => {
+export const Summit = () => {
   return (
-    <WebAppWrapper title="ホーム">
-      <div>
-        <p>ホームです</p>
-      </div>
+    <WebAppWrapper title="サミットモード">
+      <p>サミットモード</p>
     </WebAppWrapper>
   );
 };

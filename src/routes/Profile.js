@@ -9,7 +9,7 @@ import { Navigate } from "react-router-dom";
 //const BASE_URL = process.env.BASE_URL;
 //const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
-export const LiffProfile = () => {
+export const Profile = () => {
   const { liffObject, isLoggedIn, logout } = useLiff();
   const { displayName, pictureUrl } = useLiffInfo(liffObject, isLoggedIn);
   const [loggedOut, setLoggedOut] = useState(false);

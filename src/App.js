@@ -2,16 +2,17 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
+import { Top } from "./routes/Top";
 import { Home } from "./routes/Home";
+import { Summit } from "./routes/Summit";
+import { Profile } from "./routes/Profile";
+
 import { LiffRoot } from "./LiffRoot";
+import { LiffLightProfile } from "./routes/LiffLightProfile";
+import { LiffWakeUp } from "./routes/LiffWakeUp";
 import { LiffSignUp } from "./routes/LiffSignUp";
 import { LiffSetTime } from "./routes/LiffSetTime";
-import { LiffWakeUp } from "./routes/LiffWakeUp";
-import { LiffProfile } from "./routes/LiffProfile";
 import { LiffFeedback } from "./routes/LiffFeedback";
-import { LiffSummit } from "./routes/LiffSummit";
-import { LiffHome } from "./routes/LiffHome";
-import { LiffLightProfile } from "./routes/LiffLightProfile";
 
 import { IdToken } from "./IdToken";
 import { NotFound } from "./routes/NotFound";
@@ -27,11 +28,11 @@ const App = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Top />} />
         <Route path="/idtoken" element={<IdToken />} />
-        <Route path="/app/summit" element={<LiffSummit />} />
-        <Route path="/app/home" element={<LiffHome />} />
-        <Route path="/app/profile" element={<LiffProfile />} />
+        <Route path="/app/summit" element={<Summit />} />
+        <Route path="/app/home" element={<Home />} />
+        <Route path="/app/profile" element={<Profile />} />
 
         <Route path="/app" element={<LiffRoot />} />
         <Route path="/app/main" element={<LiffLightProfile />} />
