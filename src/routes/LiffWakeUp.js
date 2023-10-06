@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useLiffInfo } from "../hooks/useLiffInfo";
 import { useLiffMessage } from "../hooks/useLiffMessage";
 import { useLocation } from "react-router-dom";
@@ -9,14 +9,14 @@ import { TextForm } from "../components/TextForm";
 import { LiffObjectContext } from "../components/LiffObjectProvider";
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
-export const LiffWakeUp = (props) => {
+export const LiffWakeUp = () => {
   const { liffObject, isLoggedIn, isInClient } = useContext(LiffObjectContext);
   const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
   const { idToken } = useLiffInfo(liffObject, isLoggedIn);
   const [{ isLoading }, doFetch] = useAxios();
   const [log, setLog] = useState("");
   const [error, setError] = useState("");
-  const [{ uid }, fetchUid] = useUid(props.uid);
+  const { uid } = useUid();
   const search = useLocation().search;
   const query = new URLSearchParams(search);
   const timestamp = parseInt(query.get("timestamp"), 10);
@@ -47,13 +47,6 @@ export const LiffWakeUp = (props) => {
       liffObject?.closeWindow();
     }
   };
-
-  useEffect(() => {
-    if (!uid && idToken) {
-      fetchUid(idToken);
-      props.setCookieUid(uid);
-    }
-  }, [idToken, uid]);
 
   return (
     <>

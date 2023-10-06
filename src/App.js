@@ -1,6 +1,5 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { useCookies } from "react-cookie";
 
 import { Top } from "./routes/Top";
 import { Home } from "./routes/Home";
@@ -21,10 +20,6 @@ const DEBUG = process.env.DEBUG==="TRUE" ? true : false;
 if (DEBUG) console.log("debug mode");
 
 const App = () => {
-  const [cookies, setCookie] = useCookies(["uid"]);
-  const setCookieUid = (uid) => {
-    setCookie("uid", uid);
-  };
   return (
     <div>
       <Routes>
@@ -36,13 +31,12 @@ const App = () => {
 
         <Route path="/app" element={<LiffRoot />} />
         <Route path="/app/main" element={<LiffLightProfile />} />
-        <Route path="/app/wakeup" element={<LiffWakeUp uid={cookies.uid} setCookieUid={setCookieUid} />} />
-        <Route path="/app/signup" element={<LiffSignUp setCookieUid={setCookieUid} />} />
-        <Route path="/app/setTime" element={<LiffSetTime uid={cookies.uid} setCookieUid={setCookieUid} />} />
+        <Route path="/app/wakeup" element={<LiffWakeUp />} />
+        <Route path="/app/signup" element={<LiffSignUp />} />
+        <Route path="/app/setTime" element={<LiffSetTime />} />
         <Route path="/app/feedback" element={<LiffFeedback />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      { DEBUG && <p>current_uid: { cookies.uid }</p> }
     </div>
   );
 };

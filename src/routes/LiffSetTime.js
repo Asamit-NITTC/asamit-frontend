@@ -7,9 +7,9 @@ import { useLocation } from "react-router-dom";
 import { LiffObjectContext } from "../components/LiffObjectProvider";
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
-export const LiffSetTime = (props) => {
+export const LiffSetTime = () => {
   const [log, setLog] = useState("");
-  const [{ uid }, fetchUid] = useUid(props.uid);
+  const { uid } = useUid();
   const search = useLocation().search;
   const query = new URLSearchParams(search);
   const targetTime = query.get("target-time");
@@ -20,10 +20,6 @@ export const LiffSetTime = (props) => {
 
   useEffect(() => {
     (async () => {
-      if (!uid && idToken) {
-        fetchUid(idToken);
-        props.setCookieUid(uid);
-      }
       if (uid && idToken) {
         try {
           const res = await doFetch({

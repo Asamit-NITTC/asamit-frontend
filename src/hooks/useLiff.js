@@ -31,6 +31,7 @@ export const useLiff = () => {
   const logout = () => {
     liffObject?.logout();
     setIsLoggedIn(false);
+    localStorage.removeItem("uid");
   };
 
   useEffect(() => {
