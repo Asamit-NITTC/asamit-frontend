@@ -21,7 +21,7 @@ export const Footer = ({ ...props }) => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/app/main"}>
+            <NavLink to={"/app/profile"}>
               <MdOutlineDataThresholding size={iconSize} />
             </NavLink>
           </li>

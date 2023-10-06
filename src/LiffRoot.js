@@ -7,8 +7,7 @@ export const LiffRoot = () => {
 
   return (
     <>
-      {!isInClient && <Navigate replace to="/app/home" />
-      }
+      {!isInClient && <Navigate replace to="/app/home" />}
     </>
   )
 }
