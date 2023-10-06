@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useLiff } from "../hooks/useLiff";
 import { Button } from "../ui/Button";
 import { Block } from "../ui/Block";
 import { useAxios } from "../hooks/useAxios";
 import { useFormData } from "../hooks/useFormData";
+//import { useZxing } from "react-zxing";
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
 export const SummitCreate = () => {
+  const { liffObject } = useLiff();
   const [{ isLoading }, doFetch] = useAxios();
   const [formData, setFormData] = useState({});
   const [log, setLog] = useState("");
@@ -24,6 +27,28 @@ export const SummitCreate = () => {
       description: formDescription,
     });
   };
+
+  const handleScan = async () => {
+    const scanResult = await liffObject?.scanCodeV2();
+    const uid = scanResult.value;
+    try {
+      if (isNaN(Number(uid)) || !uid) throw "不正なQRコードです";
+      setFormUid(uid);
+    } catch (err) {
+      setError(err);
+    }
+  };
+  /*
+  const {
+    ref,
+    torch: { on, off, isAvailable},
+  } = useZxing({
+    onDecodeResult(result) {
+      setFormUid(result.getText());
+      off();
+    }
+  });
+  */
 
   const createGroup = async () => {
     console.log(formData);
@@ -61,6 +86,11 @@ export const SummitCreate = () => {
                 value={formUid}
               />
             </div>
+            {
+              <Button type="summit" onClick={handleScan}>
+                QRコードから追加
+              </Button>
+            }
             <div>
               <label htmlFor="wakeUpTime">グループの起床時刻</label>
               <input
@@ -92,6 +122,11 @@ export const SummitCreate = () => {
           </p>
         )}
       </Block>
+      {/*
+      <div>
+        <video ref={ref} />
+      </div>
+      */}
     </>
   );
 };
