@@ -8,7 +8,7 @@ const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
 export const LiffSignUp = (props) => {
   const [log, setLog] = useState("");
-  const { liffObject, isLoggedIn } = useLiff();
+  const { liffObject, isLoggedIn, isInClient } = useLiff();
   const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
   const { idToken } = useLiffInfo(liffObject, isLoggedIn);
   const [{ isLoading }, doFetch] = useAxios();
@@ -42,10 +42,14 @@ export const LiffSignUp = (props) => {
   }, [idToken]);
 
   return (
-    <main>
-      {DEBUG && <p>{log}</p>}
-      {DEBUG && isLoading && <p>Loading</p>}
-      <RegisterName register={register} />
-    </main>
+    <>
+      {!isInClient && <h1>不正な遷移です</h1>}
+      {isInClient && (
+        <main>
+          {DEBUG && <p>{log}</p>},{DEBUG && isLoading && <p>Loading</p>},
+          <RegisterName register={register} />
+        </main>
+      )}
+    </>
   );
 };
