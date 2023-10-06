@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useLiff } from "../hooks/useLiff";
+import React, { useState, useEffect, useContext } from "react";
 import { useLiffInfo } from "../hooks/useLiffInfo";
 import { useLiffMessage } from "../hooks/useLiffMessage";
 import { useAxios } from "../hooks/useAxios";
 import { RegisterName } from "../components/RegisterName";
+import { LiffObjectContext } from "../components/LiffObjectProvider";
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
 export const LiffSignUp = (props) => {
   const [log, setLog] = useState("");
-  const { liffObject, isLoggedIn, isInClient } = useLiff();
+  const { liffObject, isLoggedIn, isInClient } = useContext(LiffObjectContext);
   const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
   const { idToken } = useLiffInfo(liffObject, isLoggedIn);
   const [{ isLoading }, doFetch] = useAxios();

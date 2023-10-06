@@ -1,11 +1,11 @@
-import React from "react";
-import { useLiff } from "../hooks/useLiff";
+import React, { useContext } from "react";
 import { useLiffMessage } from "../hooks/useLiffMessage";
 import { TextForm } from "../components/TextForm";
 import { Block } from "../ui/Block";
+import { LiffObjectContext } from "../components/LiffObjectProvider";
 
 export const LiffFeedback = () => {
-  const { liffObject, isLoggedIn, isInClient } = useLiff();
+  const { liffObject, isLoggedIn, isInClient } = useContext(LiffObjectContext);
   const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
   const sendFeedback = (postFinal) => {
     sendMessages("feedback>> " + postFinal);
