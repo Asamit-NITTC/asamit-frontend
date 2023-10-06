@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { useLiff } from "../hooks/useLiff";
+import React, { useContext, useState } from "react";
 import { useLiffInfo } from "../hooks/useLiffInfo";
 import { WebAppWrapper } from "../components/WebAppWrapper";
 import { Button } from "../ui/Button";
 import { Navigate } from "react-router-dom";
+import { LiffObjectContext } from "../components/LiffObjectProvider";
 //import { useLocation } from "react-router-dom";
 //import axios from "axios";
 //const BASE_URL = process.env.BASE_URL;
 //const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
 export const Profile = () => {
-  const { liffObject, isLoggedIn, logout } = useLiff();
+  const { liffObject, isLoggedIn, logout } = useContext(LiffObjectContext);
   const { displayName, pictureUrl } = useLiffInfo(liffObject, isLoggedIn);
   const [loggedOut, setLoggedOut] = useState(false);
   const logoutBtn = () => {

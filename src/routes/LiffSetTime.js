@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useLiff } from "../hooks/useLiff";
+import React, { useState, useEffect, useContext } from "react";
 import { useLiffInfo } from "../hooks/useLiffInfo";
 import { useLiffMessage } from "../hooks/useLiffMessage";
 import { useAxios } from "../hooks/useAxios";
 import { useUid } from "../hooks/useUid";
 import { useLocation } from "react-router-dom";
+import { LiffObjectContext } from "../components/LiffObjectProvider";
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
 export const LiffSetTime = (props) => {
@@ -13,7 +13,7 @@ export const LiffSetTime = (props) => {
   const search = useLocation().search;
   const query = new URLSearchParams(search);
   const targetTime = query.get("target-time");
-  const { liffObject, isLoggedIn, isInClient } = useLiff();
+  const { liffObject, isLoggedIn, isInClient } = useContext(LiffObjectContext);
   const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
   const { idToken } = useLiffInfo(liffObject, isLoggedIn);
   const [{ isLoading }, doFetch] = useAxios();

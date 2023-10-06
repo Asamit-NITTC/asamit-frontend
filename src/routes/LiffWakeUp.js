@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useLiff } from "../hooks/useLiff";
+import React, { useContext, useEffect, useState } from "react";
 import { useLiffInfo } from "../hooks/useLiffInfo";
 import { useLiffMessage } from "../hooks/useLiffMessage";
 import { useLocation } from "react-router-dom";
@@ -7,10 +6,11 @@ import { useUid } from "../hooks/useUid";
 import { useAxios } from "../hooks/useAxios";
 import { Block } from "../ui/Block";
 import { TextForm } from "../components/TextForm";
+import { LiffObjectContext } from "../components/LiffObjectProvider";
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
 export const LiffWakeUp = (props) => {
-  const { liffObject, isLoggedIn, isInClient } = useLiff();
+  const { liffObject, isLoggedIn, isInClient } = useContext(LiffObjectContext);
   const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
   const { idToken } = useLiffInfo(liffObject, isLoggedIn);
   const [{ isLoading }, doFetch] = useAxios();

@@ -1,10 +1,10 @@
-import React from "react";
-import { useLiff } from "../hooks/useLiff";
+import React, { useContext } from "react";
+import { LiffObjectContext } from "../components/LiffObjectProvider";
 import { useLiffInfo } from "../hooks/useLiffInfo";
 import { Button } from "../ui/Button";
 
 export const LiffLightProfile = () => {
-  const { liffObject, isLoggedIn, isInClient } = useLiff();
+  const { liffObject, isLoggedIn, isInClient } = useContext(LiffObjectContext);
   const { displayName, pictureUrl } = useLiffInfo(liffObject, isLoggedIn);
   const openAsamitApp = () => {
     liffObject?.openWindow({
