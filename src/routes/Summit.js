@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { SummitMain } from "../components/SummitMain";
+import { SummitPending } from "../components/SummitPending";
+import { SummitCreate } from "../components/SummitCreate";
 import { WebAppWrapper } from "../components/WebAppWrapper";
 //import { useLocation } from "react-router-dom";
 //import axios from "axios";
@@ -6,9 +9,12 @@ import { WebAppWrapper } from "../components/WebAppWrapper";
 //const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
 export const Summit = () => {
+  const [summitStatus] = useState("create"); // pending, main, create
   return (
     <WebAppWrapper title="サミットモード">
-      <p>サミットモード</p>
+      {summitStatus === "pending" && <SummitPending />}
+      {summitStatus === "main" && <SummitMain />}
+      {summitStatus === "create" && <SummitCreate />}
     </WebAppWrapper>
   );
 };
