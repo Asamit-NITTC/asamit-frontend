@@ -8,6 +8,7 @@ import GetProfile from "@line/liff/get-profile";
 import SendMessages from "@line/liff/send-messages";
 import CloseWindow from "@line/liff/close-window";
 import IsInClient from "@line/liff/is-in-client";
+import OpenWindow from "@line/liff/open-window";
 liff.use(new IsLoggedIn());
 liff.use(new Login());
 liff.use(new Logout());
@@ -16,6 +17,7 @@ liff.use(new GetProfile());
 liff.use(new SendMessages());
 liff.use(new CloseWindow());
 liff.use(new IsInClient());
+liff.use(new OpenWindow());
 
 export const useLiff = () => {
   const [liffObject, setLiffObject] = useState({});

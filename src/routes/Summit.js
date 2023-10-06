@@ -8,7 +8,7 @@ import { WebAppWrapper } from "../components/WebAppWrapper";
 //const BASE_URL = process.env.BASE_URL;
 //const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
-export const LiffSummit = () => {
+export const Summit = () => {
   const [summitStatus] = useState("create"); // pending, main, create
   return (
     <WebAppWrapper title="サミットモード">

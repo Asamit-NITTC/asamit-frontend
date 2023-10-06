@@ -1,15 +1,16 @@
 import React from "react";
-import { Button } from "../ui/Button";
-import { Link } from "react-router-dom";
+import { WebAppWrapper } from "../components/WebAppWrapper";
+//import { useLocation } from "react-router-dom";
+//import axios from "axios";
+//const BASE_URL = process.env.BASE_URL;
+//const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
 export const Home = () => {
   return (
-    <>
-      <h1>Asamit TOP</h1>
-      <p>ルートページは説明を表示させたい</p>
-      <Link to="/app/home">
-        <Button>Asamitアプリはここから！</Button>
-      </Link>
-    </>
+    <WebAppWrapper title="ホーム">
+      <div>
+        <p>ホームです</p>
+      </div>
+    </WebAppWrapper>
   );
 };

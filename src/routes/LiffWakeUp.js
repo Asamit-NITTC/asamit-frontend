@@ -10,7 +10,7 @@ import { TextForm } from "../components/TextForm";
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
 export const LiffWakeUp = (props) => {
-  const { liffObject, isLoggedIn } = useLiff();
+  const { liffObject, isLoggedIn, isInClient } = useLiff();
   const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
   const { idToken } = useLiffInfo(liffObject, isLoggedIn);
   const [{ isLoading }, doFetch] = useAxios();
@@ -56,27 +56,32 @@ export const LiffWakeUp = (props) => {
   }, [idToken, uid]);
 
   return (
-    <main>
-      {DEBUG && <p>{log}</p>}
-      {DEBUG && isLoading && <p>Loading</p>}
-      {error && (
-        <p>
-          <code>{error}</code>
-        </p>
+    <>
+      {!isInClient && <h1>不正な遷移です</h1>}
+      {isInClient && (
+        <main>
+          {DEBUG && <p>{log}</p>}
+          {DEBUG && isLoading && <p>Loading</p>}
+          {error && (
+            <p>
+              <code>{error}</code>
+            </p>
+          )}
+          <Block>
+            <div>
+              <p>{isoStr.slice(0, 10)}</p>
+              <p>{dt.getHours() + ":" + dt.getMinutes()}</p>
+            </div>
+            <div>
+              <p>コメント</p>
+              <TextForm
+                btnText="コメントを送信"
+                submitAction={(postFinal) => postReport(postFinal)}
+              />
+            </div>
+          </Block>
+        </main>
       )}
-      <Block>
-        <div>
-          <p>{isoStr.slice(0, 10)}</p>
-          <p>{dt.getHours() + ":" + dt.getMinutes()}</p>
-        </div>
-        <div>
-          <p>コメント</p>
-          <TextForm
-            btnText="コメントを送信"
-            submitAction={(postFinal) => postReport(postFinal)}
-          />
-        </div>
-      </Block>
-    </main>
+    </>
   );
 };

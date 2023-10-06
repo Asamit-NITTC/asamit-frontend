@@ -13,7 +13,7 @@ export const LiffSetTime = (props) => {
   const search = useLocation().search;
   const query = new URLSearchParams(search);
   const targetTime = query.get("target-time");
-  const { liffObject, isLoggedIn } = useLiff();
+  const { liffObject, isLoggedIn, isInClient } = useLiff();
   const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
   const { idToken } = useLiffInfo(liffObject, isLoggedIn);
   const [{ isLoading }, doFetch] = useAxios();
@@ -48,11 +48,16 @@ export const LiffSetTime = (props) => {
   }, [idToken, uid]);
 
   return (
-    <main>
-      {DEBUG && <p>{log}</p>}
-      {DEBUG && isLoading && <p>Loading</p>}
-      <h2>登録中</h2>
-      <p>ウインドウを閉じないでください！</p>
-    </main>
+    <>
+      {!isInClient && <h1>不正な遷移です</h1>}
+      {isInClient && (
+        <main>
+          {DEBUG && <p>{log}</p>}
+          {DEBUG && isLoading && <p>Loading</p>}
+          <h2>登録中</h2>
+          <p>ウインドウを閉じないでください！</p>
+        </main>
+      )}
+    </>
   );
 };
