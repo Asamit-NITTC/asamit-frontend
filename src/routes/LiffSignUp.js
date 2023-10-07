@@ -41,15 +41,16 @@ export const LiffSignUp = () => {
     if (Object.keys(liffObject).length === 0 || !idToken) return;
   }, [idToken]);
 
-  return (
-    <>
-      {!isInClient && <h1>不正な遷移です</h1>}
-      {isInClient && (
+  if (!isInClient && !DEBUG) {
+    return <h1>不正な遷移です</h1>;
+  } else {
+    return (
+      <>
         <main>
           {DEBUG && <p>{log}</p>},{DEBUG && isLoading && <p>Loading</p>},
           <RegisterName register={register} />
         </main>
-      )}
-    </>
-  );
+      </>
+    );
+  }
 };

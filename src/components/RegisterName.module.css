@@ -1,5 +1,5 @@
 .content {
-  margin: 2rem;
+  margin: 1rem;
 }
 .content * {
   margin: 1rem;
@@ -16,4 +16,9 @@ button {
 }
 .btnlogin {
   height: 5rem;
+}
+.input {
+  font-size: 2rem;
+  height: 2.5rem;
+  padding: 0.5rem;
 }

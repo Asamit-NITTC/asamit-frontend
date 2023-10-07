@@ -7,8 +7,8 @@ export const Login = ({ login }) => {
   return (
     <>
       <Block>
-        <div>
-          <h1>Asamit!アプリにログイン</h1>
+        <div className={styles.content}>
+          <h2>Asamit!アプリにログイン</h2>
           <p>
             アプリにログインすると自分の実績や複数人での朝活などの機能が解放されます！
           </p>

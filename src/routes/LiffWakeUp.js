@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { useLiffInfo } from "../hooks/useLiffInfo";
 import { useLiffMessage } from "../hooks/useLiffMessage";
 import { useLocation } from "react-router-dom";
 import { useUid } from "../hooks/useUid";
@@ -12,7 +11,6 @@ const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 export const LiffWakeUp = () => {
   const { liffObject, isLoggedIn, isInClient } = useContext(LiffObjectContext);
   const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
-  const { idToken } = useLiffInfo(liffObject, isLoggedIn);
   const [{ isLoading }, doFetch] = useAxios();
   const [log, setLog] = useState("");
   const [error, setError] = useState("");
@@ -25,7 +23,7 @@ export const LiffWakeUp = () => {
 
   const postReport = async (postFinal) => {
     const dt = new Date(timestamp);
-
+    const idToken = liffObject?.getIDToken();
     try {
       const res = await doFetch({
         method: "post",
@@ -48,33 +46,36 @@ export const LiffWakeUp = () => {
     }
   };
 
-  return (
-    <>
-      {!isInClient && <h1>不正な遷移です</h1>}
-      {isInClient && (
-        <main>
-          {DEBUG && <p>{log}</p>}
-          {DEBUG && isLoading && <p>Loading</p>}
-          {error && (
-            <p>
-              <code>{error}</code>
-            </p>
-          )}
-          <Block>
-            <div>
-              <p>{isoStr.slice(0, 10)}</p>
-              <p>{dt.getHours() + ":" + dt.getMinutes()}</p>
+  if (!isInClient && !DEBUG) {
+    return <h1>不正な遷移です</h1>;
+  } else {
+    return (
+      <main>
+        {DEBUG && <p>{log}</p>}
+        {DEBUG && isLoading && <p>Loading</p>}
+        {error && (
+          <p>
+            <code>{error}</code>
+          </p>
+        )}
+        <Block>
+          <div>
+            <p className="date">{isoStr.slice(0, 10)}</p>
+            <div className="time">
+              <p className="result">{dt.getHours() + ":" + dt.getMinutes()}</p>
+              <p className="obj">{"6" + ":" + "00"}</p>
             </div>
-            <div>
-              <p>コメント</p>
-              <TextForm
-                btnText="コメントを送信"
-                submitAction={(postFinal) => postReport(postFinal)}
-              />
-            </div>
-          </Block>
-        </main>
-      )}
-    </>
-  );
+          </div>
+          <div className="form">
+            <h4>コメント</h4>
+            <TextForm
+              btnText="コメントを送信"
+              placeholder="目標・朝活を頑張る仲間に挨拶等なんでも！"
+              submitAction={(postFinal) => postReport(postFinal)}
+            />
+          </div>
+        </Block>
+      </main>
+    );
+  }
 };
