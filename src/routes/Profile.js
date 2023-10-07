@@ -24,7 +24,10 @@ export const Profile = () => {
   return (
     <WebAppWrapper title="実績">
       <ProfileCard pictureUrl={pictureUrl} userInfo={userInfo} />
-      <Button onClick={logoutBtn}>ログアウト</Button>
+      <Button
+        onClick={logoutBtn}
+        className="default-margin"
+      >ログアウト</Button>
       {loggedOut && <Navigate replace to="/app/home" />}
     </WebAppWrapper>
   );

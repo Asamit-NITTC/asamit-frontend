@@ -22,7 +22,7 @@ button {
   justify-content: center;
   align-items: center;
   gap:30px;
-  margin:0 50px;
+  margin:0px;
   padding:0;
   border-bottom: 1px solid #000000;
   line-height: 0;
@@ -43,6 +43,4 @@ button {
 .uid {
   font-size: 1rem;
   color: #757575;
-}
-.disp {
 }

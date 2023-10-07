@@ -8,13 +8,13 @@ export const SummitPending = ({ setCreate }) => {
   return (
     <>
       <Block>
-        <div>
+        <div className="default-margin">
           <p>まだどのグループにも属していません</p>
-          <p>あなたの知り合いと早起きを始めましょう！</p>
+          <p className="default-margin">あなたも知り合いと早起きを始めましょう！</p>
           <Button onClick={setCreate}>新しくグループを作る！</Button>
         </div>
-        <div>
-          <p>招待が届くと表示されます</p>
+        <div className="default-margin">
+          <p className="default-margin">招待が届くと表示されます</p>
           <Button onClick={() => setReload(reload ? false : true)}>更新</Button>
         </div>
       </Block>

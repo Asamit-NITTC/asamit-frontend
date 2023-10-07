@@ -48,6 +48,7 @@ img{
     max-width:100%;
 }
 main {
+  text-align: center;
   margin: 20px;
   max-width: 1000px;
   min-width: 250px;
@@ -55,7 +56,10 @@ main {
   font: red;
 }
 
-/* routes */
+.default-margin {
+  margin: 1rem;
+}
+
 .time {
   margin: 2rem;
 }
