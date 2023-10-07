@@ -9,13 +9,16 @@ export const ProfileCard = ({ pictureUrl, userInfo }) => {
     <>
       <Block>
         <div className={styles.content}>
-          {pictureUrl && <img src={pictureUrl}
-            alt="プロフィール画像"
-            className={styles.icon}
-          />}
-          {!pictureUrl && <BiSolidUserCircle size="10rem"
-            className={styles.icon}
-          />}
+          {pictureUrl && (
+            <img
+              src={pictureUrl}
+              alt="プロフィール画像"
+              className={styles.icon}
+            />
+          )}
+          {!pictureUrl && (
+            <BiSolidUserCircle size="10rem" className={styles.icon} />
+          )}
           <div className={styles.username}>
             <p>表示名:</p>
             <h4 className={styles.disp}>{userInfo.name || "-"}</h4>
