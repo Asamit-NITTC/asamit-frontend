@@ -6,7 +6,7 @@ import { RegisterName } from "../components/RegisterName";
 import { LiffObjectContext } from "../components/LiffObjectProvider";
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
-export const LiffSignUp = (props) => {
+export const LiffSignUp = () => {
   const [log, setLog] = useState("");
   const { liffObject, isLoggedIn, isInClient } = useContext(LiffObjectContext);
   const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
@@ -23,7 +23,7 @@ export const LiffSignUp = (props) => {
       });
       setLog("signup success " + JSON.stringify(res));
       const uid = res.uid;
-      props.setCookieUid(uid);
+      localStorage.setItem("uid", uid);
       sendMessages(`登録完了\nID: ${uid}`);
     } catch (err) {
       setLog("signup failed " + JSON.stringify(err));
