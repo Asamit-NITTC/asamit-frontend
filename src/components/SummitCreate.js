@@ -1,31 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button } from "../ui/Button";
 import { Block } from "../ui/Block";
 import { useAxios } from "../hooks/useAxios";
 import { useFormData } from "../hooks/useFormData";
+import { useUid } from "../hooks/useUid";
+import { LiffObjectContext } from "./LiffObjectProvider";
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
-export const SummitCreate = () => {
+export const SummitCreate = ({ setPending }) => {
   const [{ isLoading }, doFetch] = useAxios();
   const [formData, setFormData] = useState({});
+  const { liffObject } = useContext(LiffObjectContext);
+  const { uid } = useUid();
   const [log, setLog] = useState("");
   const [error, setError] = useState("");
-  const [idToken] = useState("");
-  const [uid] = useState("");
 
   const [formUid, setFormUid] = useFormData("");
-  const [formTime, setFormTime] = useFormData("");
+  const [formTime, setFormTime] = useFormData("06:00");
   const [formDescription, setFormDescription] = useFormData("");
 
   const setAll = () => {
     setFormData({
       memberUID: [uid, formUid],
-      wakeUpTime: formTime,
+      wakeUpTime: `2023-06-27T${formTime}:00+13:00`,
       description: formDescription,
     });
   };
 
   const createGroup = async () => {
+    const idToken = liffObject?.getIDToken();
     console.log(formData);
     try {
       const res = await doFetch({
@@ -34,6 +37,7 @@ export const SummitCreate = () => {
         body: JSON.stringify(formData),
         headers: JSON.stringify({ Authorization: `Bearer ${idToken}` }),
       });
+      setError("グループが作成できました！");
       setLog("created " + JSON.stringify(res.data));
     } catch (err) {
       setLog("failed to create group " + JSON.stringify(err));
@@ -64,14 +68,14 @@ export const SummitCreate = () => {
             <div>
               <label htmlFor="wakeUpTime">グループの起床時刻</label>
               <input
-                type="text"
+                type="time"
                 name="wakeUpTime"
                 onChange={setFormTime}
                 value={formTime}
               />
             </div>
             <div>
-              <label htmlFor="description">グループの説明</label>
+              <label htmlFor="description">グループの説明(任意)</label>
               <input
                 type="text"
                 name="description"
@@ -92,6 +96,9 @@ export const SummitCreate = () => {
           </p>
         )}
       </Block>
+      <Button type="summit" onClick={setPending}>
+        戻る
+      </Button>
     </>
   );
 };

@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { useLiff } from "./hooks/useLiff";
+import React, { useContext, useState } from "react";
+import { LiffObjectContext } from "./components/LiffObjectProvider";
 
 export const IdToken = () => {
   const [idToken, setIdToken] = useState("");
-  const { liffObject, isLoggedIn, login, logout } = useLiff();
+  const { liffObject, isLoggedIn, login, logout } = useContext(LiffObjectContext);
 
   const fetchIdToken = () => {
-    const token = liffObject.getIDToken();
+    const token = liffObject?.getIDToken();
     setIdToken(token);
   }
 
