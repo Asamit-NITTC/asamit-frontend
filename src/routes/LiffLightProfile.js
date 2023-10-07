@@ -22,7 +22,7 @@ export const LiffLightProfile = () => {
           <h2>こんにちは！{displayName}さん！</h2>
           <p>累計ポイント: 0pt</p>
           <p>連続起床日数: 0日</p>
-          <h2>Asamit!アプリを使うと通知を受け取ることができます！</h2>
+          <h4>Asamit!アプリを使うと通知を受け取ることができます！</h4>
           <Button onClick={openAsamitApp}>Asamit!アプリを開く</Button>
         </main>
       )}
