@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useLiffInfo } from "../hooks/useLiffInfo";
 import { useLiffMessage } from "../hooks/useLiffMessage";
 import { useAxios } from "../hooks/useAxios";
 import { useUid } from "../hooks/useUid";
@@ -15,11 +14,12 @@ export const LiffSetTime = () => {
   const targetTime = query.get("target-time");
   const { liffObject, isLoggedIn, isInClient } = useContext(LiffObjectContext);
   const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
-  const { idToken } = useLiffInfo(liffObject, isLoggedIn);
   const [{ isLoading }, doFetch] = useAxios();
 
   useEffect(() => {
     (async () => {
+      if (Object.keys(liffObject).length === 0) return;
+      const idToken = liffObject?.getIDToken();
       if (uid && idToken) {
         try {
           const res = await doFetch({
@@ -41,7 +41,7 @@ export const LiffSetTime = () => {
         }
       }
     })();
-  }, [idToken, uid]);
+  }, [liffObject]);
 
   return (
     <>
