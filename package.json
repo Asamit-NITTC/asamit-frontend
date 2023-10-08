@@ -7,6 +7,8 @@
     "dev": "webpack-dev-server --config ./webpack.dev.js",
     "dev-build": "webpack --config ./webpack.dev.js",
     "build": "webpack --config ./webpack.prod.js",
+    "deploy:staging": "firebase deploy --only hosting:staging",
+    "deploy:production": "firebase deploy --only hosting:main",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src --fix 'src/**/*.js'",
     "format": "prettier --write src/**/*.js",
