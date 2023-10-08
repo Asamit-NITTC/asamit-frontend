@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useLiffInfo } from "../hooks/useLiffInfo";
 import { useLiffMessage } from "../hooks/useLiffMessage";
 import { useAxios } from "../hooks/useAxios";
 import { RegisterName } from "../components/RegisterName";
@@ -10,10 +9,10 @@ export const LiffSignUp = () => {
   const [log, setLog] = useState("");
   const { liffObject, isLoggedIn, isInClient } = useContext(LiffObjectContext);
   const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
-  const { idToken } = useLiffInfo(liffObject, isLoggedIn);
   const [{ isLoading }, doFetch] = useAxios();
 
   const register = async (name) => {
+    const idToken = liffObject?.getIDToken();
     try {
       const res = await doFetch({
         method: "post",
@@ -38,8 +37,8 @@ export const LiffSignUp = () => {
   };
 
   useEffect(() => {
-    if (Object.keys(liffObject).length === 0 || !idToken) return;
-  }, [idToken]);
+    if (Object.keys(liffObject).length === 0) return;
+  }, [liffObject]);
 
   if (!isInClient && !DEBUG) {
     return <h1>不正な遷移です</h1>;
