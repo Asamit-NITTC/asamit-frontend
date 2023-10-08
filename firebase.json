@@ -1,5 +1,5 @@
 {
-  "hosting": {
+  "hosting": [{
     "target": "main",
     "public": "./dist",
     "rewrites": [{
@@ -17,6 +17,21 @@
       "**/node_modules/**"
     ]
   },
+  {
+    "target": "staging",
+    "public": "./dist",
+    "rewrites": [{
+      "source": "**",
+      "destination": "/index.html"
+    }
+    ],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+  ],
   "functions": [
     {
       "source": "functions",
