@@ -12,10 +12,11 @@ import { SummitPending } from "../components/SummitPending";
 
 export const Home = () => {
   const { liffObject, isLoggedIn } = useContext(LiffObjectContext);
-  const { userInfo, summitStatus } = useContext(UserInfoContext);
+  const { userInfo, summitStatus, targetTime } = useContext(UserInfoContext);
   const { pictureUrl } = useLiffInfo(liffObject, isLoggedIn);
   return (
     <WebAppWrapper title="ホーム">
+      <p>時刻：{targetTime}</p>
       <ProfileCard pictureUrl={pictureUrl} userInfo={userInfo} />
       {!summitStatus.affiliation && (
         <div className="default-margin">

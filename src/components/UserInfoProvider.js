@@ -6,10 +6,10 @@ export const UserInfoContext = createContext({});
 
 export const UserInfoProvider = ({ children }) => {
   const { uid } = useUid();
-  const { userInfo, summitStatus } = useUidInfo(uid);
+  const { userInfo, summitStatus, targetTime } = useUidInfo(uid);
 
   return (
-    <UserInfoContext.Provider value={{ userInfo, summitStatus }}>
+    <UserInfoContext.Provider value={{ userInfo, summitStatus, targetTime }}>
       {children}
     </UserInfoContext.Provider>
   );
