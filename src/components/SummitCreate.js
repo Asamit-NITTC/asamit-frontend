@@ -5,6 +5,7 @@ import { useAxios } from "../hooks/useAxios";
 import { useFormData } from "../hooks/useFormData";
 import { useUid } from "../hooks/useUid";
 import { LiffObjectContext } from "./LiffObjectProvider";
+import styles from "./SummitCreate.module.css";
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
 export const SummitCreate = ({ setPending }) => {
@@ -53,50 +54,52 @@ export const SummitCreate = ({ setPending }) => {
   return (
     <>
       <Block>
-        <h2>グループを作成</h2>
-        <div>
-          <form>
-            <div>
-              <label htmlFor="memberUID">グループメイトのID</label>
-              <input
-                type="text"
-                name="memberUID"
-                onChange={setFormUid}
-                value={formUid}
-              />
-            </div>
-            <div>
-              <label htmlFor="wakeUpTime">グループの起床時刻</label>
-              <input
-                type="time"
-                name="wakeUpTime"
-                onChange={setFormTime}
-                value={formTime}
-              />
-            </div>
-            <div>
-              <label htmlFor="description">グループの説明(任意)</label>
-              <input
-                type="text"
-                name="description"
-                onChange={setFormDescription}
-                value={formDescription}
-              />
-            </div>
-          </form>
-          <Button type="summit" onClick={setAll}>
-            作成
-          </Button>
+        <div className={styles.content}>
+          <h2>グループを作成</h2>
+          <div>
+            <form>
+              <div>
+                <label htmlFor="memberUID">グループメイトのID</label>
+                <input
+                  type="text"
+                  name="memberUID"
+                  onChange={setFormUid}
+                  value={formUid}
+                />
+              </div>
+              <div>
+                <label htmlFor="wakeUpTime">グループの起床時刻</label>
+                <input
+                  type="time"
+                  name="wakeUpTime"
+                  onChange={setFormTime}
+                  value={formTime}
+                />
+              </div>
+              <div>
+                <label htmlFor="description">グループの説明(任意)</label>
+                <input
+                  type="text"
+                  name="description"
+                  onChange={setFormDescription}
+                  value={formDescription}
+                />
+              </div>
+            </form>
+            <Button className={styles.btn} type="summit" onClick={setAll}>
+              作成
+            </Button>
+          </div>
+          {DEBUG && <p>{log}</p>}
+          {DEBUG && isLoading && <p>Loading</p>}
+          {error && (
+            <p>
+              <code>{error}</code>
+            </p>
+          )}
         </div>
-        {DEBUG && <p>{log}</p>}
-        {DEBUG && isLoading && <p>Loading</p>}
-        {error && (
-          <p>
-            <code>{error}</code>
-          </p>
-        )}
       </Block>
-      <Button type="summit" onClick={setPending}>
+      <Button className={styles.btn} type="summit" onClick={setPending}>
         戻る
       </Button>
     </>

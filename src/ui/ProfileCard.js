@@ -9,13 +9,16 @@ export const ProfileCard = ({ pictureUrl, userInfo }) => {
     <>
       <Block>
         <div className={styles.content}>
-          {pictureUrl && <img src={pictureUrl}
-            alt="プロフィール画像"
-            className={styles.icon}
-          />}
-          {!pictureUrl && <BiSolidUserCircle size="10rem"
-            className={styles.icon}
-          />}
+          {pictureUrl && (
+            <img
+              src={pictureUrl}
+              alt="プロフィール画像"
+              className={styles.icon}
+            />
+          )}
+          {!pictureUrl && (
+            <BiSolidUserCircle size="10rem" className={styles.icon} />
+          )}
           <div className={styles.username}>
             <p>表示名:</p>
             <h4 className={styles.disp}>{userInfo.name || "-"}</h4>
@@ -25,7 +28,9 @@ export const ProfileCard = ({ pictureUrl, userInfo }) => {
             <p>累計ポイント:</p>
             <h3 className="disp">{String(userInfo.point) || "-"} pt</h3>
           </div>
-          <p className="userrecord disp">{String(userInfo.duration) || "-"} 日連続中</p>
+          <p className="userrecord disp">
+            {String(userInfo.duration) || "-"} 日連続中
+          </p>
         </div>
       </Block>
     </>

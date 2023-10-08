@@ -10,7 +10,9 @@ export const SummitPending = ({ setCreate }) => {
       <Block>
         <div className="default-margin">
           <p>まだどのグループにも属していません</p>
-          <p className="default-margin">あなたも知り合いと早起きを始めましょう！</p>
+          <p className="default-margin">
+            あなたも知り合いと早起きを始めましょう！
+          </p>
           <Button onClick={setCreate}>新しくグループを作る！</Button>
         </div>
         <div className="default-margin">
