@@ -52,4 +52,4 @@ jobs:
         with: 
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ASAMI_1E0C2 }}'
           channelId: 'live'
-          target: 'main'
+          target: 'staging'
