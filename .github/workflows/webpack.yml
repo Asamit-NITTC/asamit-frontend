@@ -3,8 +3,6 @@ name: Build React App and Deploy to Firebase hosting
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
