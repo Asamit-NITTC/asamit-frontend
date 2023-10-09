@@ -1,22 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useLiff } from "../hooks/useLiff";
-import { useLiffInfo } from "../hooks/useLiffInfo";
+import React, { useContext, useState } from "react";
 import { useLiffMessage } from "../hooks/useLiffMessage";
 import { useLocation } from "react-router-dom";
 import { useUid } from "../hooks/useUid";
 import { useAxios } from "../hooks/useAxios";
 import { Block } from "../ui/Block";
 import { TextForm } from "../components/TextForm";
+import { LiffObjectContext } from "../components/LiffObjectProvider";
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
-export const LiffWakeUp = (props) => {
-  const { liffObject, isLoggedIn } = useLiff();
+export const LiffWakeUp = () => {
+  const { liffObject, isLoggedIn, isInClient } = useContext(LiffObjectContext);
   const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
-  const { idToken } = useLiffInfo(liffObject, isLoggedIn);
   const [{ isLoading }, doFetch] = useAxios();
   const [log, setLog] = useState("");
   const [error, setError] = useState("");
-  const [{ uid }, fetchUid] = useUid(props.uid);
+  const { uid } = useUid();
   const search = useLocation().search;
   const query = new URLSearchParams(search);
   const timestamp = parseInt(query.get("timestamp"), 10);
@@ -25,7 +23,7 @@ export const LiffWakeUp = (props) => {
 
   const postReport = async (postFinal) => {
     const dt = new Date(timestamp);
-
+    const idToken = liffObject?.getIDToken();
     try {
       const res = await doFetch({
         method: "post",
@@ -48,35 +46,36 @@ export const LiffWakeUp = (props) => {
     }
   };
 
-  useEffect(() => {
-    if (!uid && idToken) {
-      fetchUid(idToken);
-      props.setCookieUid(uid);
-    }
-  }, [idToken, uid]);
-
-  return (
-    <div className="main color-page">
-      {DEBUG && <p>{log}</p>}
-      {DEBUG && isLoading && <p>Loading</p>}
-      {error && (
-        <p>
-          <code>{error}</code>
-        </p>
-      )}
-      <Block>
-        <div>
-          <p>{isoStr.slice(0, 10)}</p>
-          <p>{dt.getHours() + ":" + dt.getMinutes()}</p>
-        </div>
-        <div>
-          <p>コメント</p>
-          <TextForm
-            btnText="コメントを送信"
-            submitAction={(postFinal) => postReport(postFinal)}
-          />
-        </div>
-      </Block>
-    </div>
-  );
+  if (!isInClient && !DEBUG) {
+    return <h1>不正な遷移です</h1>;
+  } else {
+    return (
+      <main>
+        {DEBUG && <p>{log}</p>}
+        {DEBUG && isLoading && <p>Loading</p>}
+        {error && (
+          <p>
+            <code>{error}</code>
+          </p>
+        )}
+        <Block>
+          <div>
+            <p className="date">{isoStr.slice(0, 10)}</p>
+            <div className="time">
+              <p className="result">{dt.getHours() + ":" + dt.getMinutes()}</p>
+              <p className="obj">{"6" + ":" + "00"}</p>
+            </div>
+          </div>
+          <div className="form">
+            <h4>コメント</h4>
+            <TextForm
+              btnText="コメントを送信"
+              placeholder="目標・朝活を頑張る仲間に挨拶等なんでも！"
+              submitAction={(postFinal) => postReport(postFinal)}
+            />
+          </div>
+        </Block>
+      </main>
+    );
+  }
 };

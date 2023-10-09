@@ -1,14 +1,19 @@
 {
   "name": "Asamit! 朝に集って価値ある活動を応援しあうアプリ",
   "short_name": "Asamit!",
-  "start_url": "/",
+  "start_url": ".",
   "display": "standalone",
   "orientation": "landscape",
   "background_color": "#FFD95D",
   "theme_color": "#F7CD46",
   "icons": [
+  {
+    "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
     {
-      "src": "https://gyazo.com/69dcc5917b511c8cf0d6cb09d75780db",
+    "src": "logo512.png",
       "type": "image/png",
       "sizes": "512x512"
     }

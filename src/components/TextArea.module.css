@@ -1,7 +1,8 @@
 .base {
-  padding: 6px;
-  font-size: 1.2rem;
+  margin: 1rem;
+  padding: 0.2rem;
+  font-size: 1.8rem;
   width: 80vw;
-  height: 30vh;
+  height: 10vh;
   border-radius: 10px;
 }

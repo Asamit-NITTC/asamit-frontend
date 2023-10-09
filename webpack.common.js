@@ -26,13 +26,24 @@ module.exports = {
             {
               test: /\.css$/i,
               use: ["style-loader", "css-loader"],
-            }
+            },
+            {
+              test: /\.(png|jpe?g|gif)$/i,
+              use: [
+                {
+                  loader: 'file-loader',
+                  options: {
+                    name: './images/[name].[ext]',
+                  },
+                },
+              ]
+            },
         ],
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'public', 'index.html'),
-            filename: './index.html'
+            favicon: path.join(__dirname, 'public', 'favicon.ico'),
         }),
     ],
 };

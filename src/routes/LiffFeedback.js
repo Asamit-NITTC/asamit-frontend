@@ -1,11 +1,11 @@
-import React from "react";
-import { useLiff } from "../hooks/useLiff";
+import React, { useContext } from "react";
 import { useLiffMessage } from "../hooks/useLiffMessage";
 import { TextForm } from "../components/TextForm";
 import { Block } from "../ui/Block";
+import { LiffObjectContext } from "../components/LiffObjectProvider";
 
 export const LiffFeedback = () => {
-  const { liffObject, isLoggedIn } = useLiff();
+  const { liffObject, isLoggedIn, isInClient } = useContext(LiffObjectContext);
   const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
   const sendFeedback = (postFinal) => {
     sendMessages("feedback>> " + postFinal);
@@ -13,14 +13,19 @@ export const LiffFeedback = () => {
   };
 
   return (
-    <div className="main">
-      <Block>
-        <p>問い合わせフォーム</p>
-        <TextForm
-          btnText="フィードバックを送信"
-          submitAction={(postFinal) => sendFeedback(postFinal)}
-        />
-      </Block>
-    </div>
+    <>
+      {!isInClient && <h1>不正な遷移です</h1>}
+      {isInClient && (
+        <main>
+          <Block>
+            <p>問い合わせフォーム</p>
+            <TextForm
+              btnText="フィードバックを送信"
+              submitAction={(postFinal) => sendFeedback(postFinal)}
+            />
+          </Block>
+        </main>
+      )}
+    </>
   );
 };

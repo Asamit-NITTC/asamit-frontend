@@ -7,6 +7,8 @@
     "dev": "webpack-dev-server --config ./webpack.dev.js",
     "dev-build": "webpack --config ./webpack.dev.js",
     "build": "webpack --config ./webpack.prod.js",
+    "deploy:staging": "firebase deploy --only hosting:staging",
+    "deploy:production": "firebase deploy --only hosting:main",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src --fix 'src/**/*.js'",
     "format": "prettier --write src/**/*.js",
@@ -23,6 +25,7 @@
     "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-react": "^7.33.1",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.3",
     "husky": "^8.0.3",
     "npm-run-all": "^4.1.5",
@@ -41,6 +44,7 @@
     "react": "^18.2.0",
     "react-cookie": "^6.1.1",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.11.0",
     "react-router-dom": "^6.16.0"
   }
 }
