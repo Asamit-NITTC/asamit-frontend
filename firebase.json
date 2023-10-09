@@ -1,36 +1,39 @@
 {
-  "hosting": [{
-    "target": "main",
-    "public": "./dist",
-    "rewrites": [{
-      "source": "/api/**",
-      "function": "app"
+  "hosting": [
+    {
+      "target": "main",
+      "public": "./dist",
+      "rewrites": [
+        {
+          "source": "/api/**",
+          "function": "app"
+        },
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ]
     },
     {
-      "source": "**",
-      "destination": "/index.html"
+      "target": "staging",
+      "public": "./dist",
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ]
     }
-    ],
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  },
-  {
-    "target": "staging",
-    "public": "./dist",
-    "rewrites": [{
-      "source": "**",
-      "destination": "/index.html"
-    }
-    ],
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  }
   ],
   "functions": [
     {
@@ -45,11 +48,11 @@
     }
   ],
   "emulators": {
-      "hosting": {
-        "port": "8080"
-      },
-      "functions": {
-        "port": "3000"
-      }
+    "hosting": {
+      "port": "8080"
+    },
+    "functions": {
+      "port": "3000"
+    }
   }
 }
