@@ -24,6 +24,7 @@ jobs:
       env:
         REACT_APP_LIFF_ID: ${{ vars.PROD_LIFF_ID }}
         BASE_URL: ${{ vars.BACKEND_BASE_URL }}
+        DEBUG: "FALSE"
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
