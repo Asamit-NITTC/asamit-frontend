@@ -1,0 +1,17 @@
+.content {
+  margin: 1rem;
+  height: 60vh;
+}
+.content * {
+  margin: 1rem;
+  line-height: 1.2;
+}
+.btn {
+  margin-top: 1rem;
+}
+form * {
+  margin: 1rem;
+  font-size: 2rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+}
