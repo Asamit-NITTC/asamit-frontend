@@ -28,8 +28,8 @@ jobs:
     - name: Build React app
       run: npm run build
       env:
-        REACT_APP_LIFF_ID: ${{ secret.REACT_APP_LIFF_ID }}
-        BASE_URL: ${{ secret.BASE_URL }}
+        REACT_APP_LIFF_ID: ${{ vars.PROD_LIFF_ID }}
+        BASE_URL: ${{ vars.BACKEND_BASE_URL }}
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
