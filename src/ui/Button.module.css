@@ -1,5 +1,5 @@
 .button {
-  font-weight: bold;
+  /*font-weight: bold;*/
   cursor: pointer;
 }
 
@@ -27,16 +27,16 @@
 }
 
 .primary {
-  color: var(--white);
+  color: #fff;
   background-color: var(--btn-yellow);
   border: none;
 }
 
 .secondary {
-  color: var(--black);
-  border-color: var(--black);
+  color: var(--btn-yellow);
+  border-color: var(--btn-yellow);
   background-color: var(--white);
-  border: 2px solid transparent;
+  border: 2px solid ;
 }
 
 .alert {
