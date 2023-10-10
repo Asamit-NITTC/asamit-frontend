@@ -1,12 +1,7 @@
 import React from "react";
-import { useSummit } from "../hooks/useSummit";
-import { useSummitRoomInfo } from "../hooks/useSummitRoomInfo";
 import { Block } from "../ui/Block";
 
-export const SummitMain = () => {
-  const [{ roomId }] = useSummit();
-  const { roomInfo } = useSummitRoomInfo(roomId);
-
+export const SummitMain = ({ roomInfo }) => {
   return (
     <>
       <Block>

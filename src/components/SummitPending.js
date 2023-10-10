@@ -3,8 +3,12 @@ import { Button } from "../ui/Button";
 import { Block } from "../ui/Block";
 import { PendingCard } from "../ui/PendingCard";
 
-export const SummitPending = ({ setCreate, isInvited }) => {
+export const SummitPending = ({ setCreate, isInvited, roomInfo }) => {
   const [reload, setReload] = useState(false);
+  // TODO: 承認機構
+  const approve = (uid) => {
+    uid;
+  };
   console.log("レンダリング");
   return (
     <>
@@ -27,7 +31,7 @@ export const SummitPending = ({ setCreate, isInvited }) => {
         </div>
         {isInvited && (
           <div>
-            <PendingCard />
+            <PendingCard roomInfo={roomInfo} approve={approve} />
           </div>
         )}
       </Block>
