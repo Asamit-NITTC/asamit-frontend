@@ -2,6 +2,7 @@ const { merge } = require('webpack-merge');
 const webpack = require("webpack");
 const dotenv = require("dotenv");
 const common = require('./webpack.common.js');
+const fs = require('fs');
 
 const env = dotenv.config().parsed;
 
@@ -18,6 +19,10 @@ module.exports = merge(common,  {
             directory: path.join(__dirname, 'public'),
         },
         */
+        https: {
+          key: fs.readFileSync('./localhost-key.pem'),
+          cert: fs.readFileSync('./localhost.pem')
+        },
         open: false,
         hot: true,
         liveReload: true,
@@ -55,5 +60,4 @@ module.exports = merge(common,  {
             }
         }
     },
-
 })

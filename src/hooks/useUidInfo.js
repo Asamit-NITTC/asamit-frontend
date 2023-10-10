@@ -34,8 +34,8 @@ export const useUidInfo = (uid) => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (uid) fetchData();
+  }, [uid]);
 
   return { userInfo, summitStatus, isLoading };
 };

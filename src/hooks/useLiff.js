@@ -50,8 +50,8 @@ export const useLiff = () => {
     setIsInClient(liff.isInClient());
     (async () => {
       await initLiff();
-      setIsLoggedIn(liff.isLoggedIn());
-      if (isLoggedIn) return;
+      //setIsLoggedIn(liff.isLoggedIn());
+      //if (isLoggedIn) return;
     })();
   }, []);
 
