@@ -14,7 +14,7 @@ export const PendingCard = ({ roomInfo, approve }) => {
               <p>{roomInfo.description || "エラー"}</p>
             </div>
             <div>
-              <Button onClick={approve}>承認</Button>
+              <Button onClick={() => approve()}>承認</Button>
             </div>
           </div>
         </Block>

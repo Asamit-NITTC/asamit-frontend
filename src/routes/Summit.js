@@ -11,7 +11,7 @@ export const Summit = () => {
   const [view, setView] = useState("pending");
   const [isInvited, setIsInvited] = useState(false);
   const { summitStatus } = useContext(UserInfoContext);
-  const [{ roomId }] = useSummit();
+  const [{ roomId }, approve] = useSummit();
   const { roomInfo } = useSummitRoomInfo(roomId);
   if (summitStatus.affiliation) setView("main");
   if (summitStatus.Invitation) setIsInvited(true);
@@ -27,6 +27,7 @@ export const Summit = () => {
     <WebAppWrapper title="サミットモード">
       {view === "pending" && (
         <SummitPending
+          approve={approve}
           setCreate={switchView}
           isInvited={isInvited}
           roomInfo={roomInfo}
