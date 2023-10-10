@@ -3,12 +3,8 @@ import { Button } from "../ui/Button";
 import { Block } from "../ui/Block";
 import { PendingCard } from "../ui/PendingCard";
 
-export const SummitPending = ({ setCreate, isInvited, roomInfo }) => {
+export const SummitPending = ({ approve, setCreate, isInvited, roomInfo }) => {
   const [reload, setReload] = useState(false);
-  // TODO: 承認機構
-  const approve = (uid) => {
-    uid;
-  };
   console.log("レンダリング");
   return (
     <>

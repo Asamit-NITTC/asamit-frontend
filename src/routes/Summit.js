@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SummitMain } from "../components/SummitMain";
 import { SummitPending } from "../components/SummitPending";
 import { SummitCreate } from "../components/SummitCreate";
@@ -11,22 +11,21 @@ export const Summit = () => {
   const [view, setView] = useState("pending");
   const [isInvited, setIsInvited] = useState(false);
   const { summitStatus } = useContext(UserInfoContext);
-  const [{ roomId }] = useSummit();
+  const [{ roomId }, approve] = useSummit();
   const { roomInfo } = useSummitRoomInfo(roomId);
-  if (summitStatus.affiliation) setView("main");
-  if (summitStatus.Invitation) setIsInvited(true);
 
   const switchView = () => setView(view === "pending" ? "create" : "pending");
-  /*
+
   useEffect(() => {
-    if (summitStatus.affiliation || summitStatus.Invitation) {
-    }
-  */
+    if (summitStatus.affiliation) setView("main");
+    if (summitStatus.invitation) setIsInvited(true);
+  }, [summitStatus]);
 
   return (
     <WebAppWrapper title="サミットモード">
       {view === "pending" && (
         <SummitPending
+          approve={approve}
           setCreate={switchView}
           isInvited={isInvited}
           roomInfo={roomInfo}
