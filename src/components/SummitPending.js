@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Button } from "../ui/Button";
 import { Block } from "../ui/Block";
+import { PendingCard } from "../ui/PendingCard";
 
-export const SummitPending = ({ setCreate }) => {
+export const SummitPending = ({ setCreate, isInvited }) => {
   const [reload, setReload] = useState(false);
   console.log("レンダリング");
   return (
@@ -24,6 +25,11 @@ export const SummitPending = ({ setCreate }) => {
             更新
           </Button>
         </div>
+        {isInvited && (
+          <div>
+            <PendingCard />
+          </div>
+        )}
       </Block>
     </>
   );
