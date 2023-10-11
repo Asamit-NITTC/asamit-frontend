@@ -60,21 +60,9 @@ main {
   margin: 1rem;
 }
 
-.time {
-  margin: 2rem;
-}
 .date {
   margin: 1rem;
   font-size: 2rem;
-}
-.result {
-  font-size: 4.0rem;
-  margin: 0;
-}
-.obj {
-  color: #6f6f6f;
-  font-size: 1.7rem;
-  margin: 0;
 }
 .form {
   margin: 1.5rem 0.5rem;
