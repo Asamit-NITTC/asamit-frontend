@@ -1,24 +1,14 @@
 import React from "react";
 import { Block } from "../ui/Block";
-import { BiSolidUserCircle } from "react-icons/bi";
 import styles from "./ProfileCard.module.css";
-//import btnImage from "../images/btn-login.png"
+import { ProfilePic } from "./ProfilePic";
 
 export const ProfileCard = ({ pictureUrl, userInfo }) => {
   return (
     <>
       <Block>
         <div className={styles.content}>
-          {pictureUrl && (
-            <img
-              src={pictureUrl}
-              alt="プロフィール画像"
-              className={styles.icon}
-            />
-          )}
-          {!pictureUrl && (
-            <BiSolidUserCircle size="10rem" className={styles.icon} />
-          )}
+          <ProfilePic pictureUrl={pictureUrl} />
           <div className={styles.username}>
             <p>表示名:</p>
             <h4 className={styles.disp}>{userInfo.name || "-"}</h4>

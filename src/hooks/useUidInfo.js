@@ -11,6 +11,7 @@ export const useUidInfo = (uid) => {
     invitation: false,
     affiliation: false,
   });
+  const [targetTime, setTargetTime] = useState();
   const [{ isLoading }, doFetch] = useAxios();
 
   const fetchData = async () => {
@@ -33,10 +34,27 @@ export const useUidInfo = (uid) => {
     }
   };
 
+  const fetchDate = async () => {
+    try {
+      const res = await doFetch({
+        method: "get",
+        url: `/target-time/get?uid=${uid}`,
+        //headers: JSON.stringify({ Authorization: `Bearer ${idToken}` }),
+      });
+      setTargetTime(res.targetTime);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const fetchAll = async () => {
+    await Promise.all([fetchData(), fetchDate()]);
+  };
+
   useEffect(() => {
     if (!uid) return;
-    fetchData();
+    fetchAll();
   }, [uid]);
 
-  return { userInfo, summitStatus, isLoading };
+  return { userInfo, summitStatus, targetTime, isLoading };
 };
