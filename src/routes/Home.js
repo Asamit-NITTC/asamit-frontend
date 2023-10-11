@@ -17,7 +17,6 @@ export const Home = () => {
   const { pictureUrl } = useLiffInfo(liffObject, isLoggedIn);
   return (
     <WebAppWrapper title="ホーム">
-      <p>時刻：{targetTime}</p>
       <StatusCard pictureUrl={pictureUrl} targetTime={targetTime} />
       {!summitStatus.affiliation && (
         <div className="default-margin">

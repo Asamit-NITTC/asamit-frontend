@@ -6,10 +6,12 @@ import { useAxios } from "../hooks/useAxios";
 import { Block } from "../ui/Block";
 import { TextForm } from "../components/TextForm";
 import { LiffObjectContext } from "../components/LiffObjectProvider";
+import { UserInfoContext } from "../components/UserInfoProvider";
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
 export const LiffWakeUp = () => {
   const { liffObject, isLoggedIn, isInClient } = useContext(LiffObjectContext);
+  const { targetTime } = useContext(UserInfoContext);
   const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
   const [{ isLoading }, doFetch] = useAxios();
   const [log, setLog] = useState("");
@@ -63,7 +65,7 @@ export const LiffWakeUp = () => {
             <p className="date">{isoStr.slice(0, 10)}</p>
             <div className="time">
               <p className="result">{dt.getHours() + ":" + dt.getMinutes()}</p>
-              <p className="obj">{"6" + ":" + "00"}</p>
+              <p className="obj">{targetTime}</p>
             </div>
           </div>
           <div className="form">
