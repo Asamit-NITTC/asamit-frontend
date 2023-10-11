@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { useUid } from "../hooks/useUid";
 import { useAxios } from "../hooks/useAxios";
 import { Block } from "../ui/Block";
+import { TwoTimeDisp } from "../ui/TwoTimeDisp";
 import { TextForm } from "../components/TextForm";
 import { LiffObjectContext } from "../components/LiffObjectProvider";
 import { UserInfoContext } from "../components/UserInfoProvider";
@@ -63,10 +64,10 @@ export const LiffWakeUp = () => {
         <Block>
           <div>
             <p className="date">{isoStr.slice(0, 10)}</p>
-            <div className="time">
-              <p className="result">{dt.getHours() + ":" + dt.getMinutes()}</p>
-              <p className="obj">{targetTime}</p>
-            </div>
+            <TwoTimeDisp
+              main={dt.getHours() + ":" + dt.getMinutes()}
+              sub={targetTime}
+            />
           </div>
           <div className="form">
             <h4>コメント</h4>
