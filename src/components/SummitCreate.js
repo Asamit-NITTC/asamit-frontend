@@ -22,8 +22,9 @@ export const SummitCreate = ({ setPending }) => {
 
   const setAll = () => {
     setFormData({
-      memberUID: [uid, formUid],
-      wakeUpTime: `2023-06-27T${formTime}:00+13:00`,
+      hostUID: uid,
+      memberUID: [formUid],
+      wakeUpTime: `2023-06-27T${formTime}:00+9:00`,
       description: formDescription,
     });
   };
@@ -59,7 +60,7 @@ export const SummitCreate = ({ setPending }) => {
           <div>
             <form>
               <div>
-                <label htmlFor="memberUID">グループメイトのID</label>
+                <p>グループメイトのID</p>
                 <input
                   type="text"
                   name="memberUID"
@@ -68,7 +69,7 @@ export const SummitCreate = ({ setPending }) => {
                 />
               </div>
               <div>
-                <label htmlFor="wakeUpTime">グループの起床時刻</label>
+                <p>グループの起床時刻</p>
                 <input
                   type="time"
                   name="wakeUpTime"
@@ -77,7 +78,7 @@ export const SummitCreate = ({ setPending }) => {
                 />
               </div>
               <div>
-                <label htmlFor="description">グループの説明(任意)</label>
+                <p>グループの説明</p>
                 <input
                   type="text"
                   name="description"
@@ -99,7 +100,12 @@ export const SummitCreate = ({ setPending }) => {
           )}
         </div>
       </Block>
-      <Button className={styles.btn} type="summit" onClick={setPending}>
+      <Button
+        className={styles.btn}
+        type="summit"
+        onClick={setPending}
+        visual="secondary"
+      >
         戻る
       </Button>
     </>

@@ -34,6 +34,7 @@ export const useLiff = () => {
     liffObject?.logout();
     setIsLoggedIn(false);
     localStorage.removeItem("uid");
+    localStorage.removeItem("roomId");
   };
 
   const initLiff = async () => {

@@ -23,7 +23,7 @@ export const useSummitRoomInfo = (roomId) => {
         roomId: res.RoomID,
         wakeUpTime: res.WakeUpTime,
         // TODO: typo: Description
-        description: res.Decription,
+        description: res.Description,
       });
     } catch (err) {
       console.log(err);
