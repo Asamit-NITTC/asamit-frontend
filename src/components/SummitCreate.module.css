@@ -2,14 +2,14 @@
   margin: 1rem;
 }
 .content * {
-  margin: 1rem;
   line-height: 1.2;
 }
 .btn {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 form * {
   margin: 1rem;
+  display: inline-block;
   font-size: 2rem;
   height: 2.5rem;
   padding: 0.5rem;
