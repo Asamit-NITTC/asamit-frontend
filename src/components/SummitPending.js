@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Button } from "../ui/Button";
 import { Block } from "../ui/Block";
+import { PendingCard } from "../ui/PendingCard";
 
-export const SummitPending = ({ setCreate }) => {
+export const SummitPending = ({ approve, setCreate, isInvited, roomInfo }) => {
   const [reload, setReload] = useState(false);
   console.log("レンダリング");
   return (
@@ -17,8 +18,18 @@ export const SummitPending = ({ setCreate }) => {
         </div>
         <div className="default-margin">
           <p className="default-margin">招待が届くと表示されます</p>
-          <Button onClick={() => setReload(reload ? false : true)}>更新</Button>
+          <Button
+            onClick={() => setReload(reload ? false : true)}
+            visual="secondary"
+          >
+            更新
+          </Button>
         </div>
+        {isInvited && (
+          <div>
+            <PendingCard roomInfo={roomInfo} approve={approve} />
+          </div>
+        )}
       </Block>
     </>
   );

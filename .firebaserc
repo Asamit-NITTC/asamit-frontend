@@ -7,6 +7,9 @@
       "hosting": {
         "main": [
           "asamit"
+        ],
+        "staging": [
+          "asami-1e0c2"
         ]
       }
     }

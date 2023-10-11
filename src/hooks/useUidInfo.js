@@ -52,8 +52,9 @@ export const useUidInfo = (uid) => {
   };
 
   useEffect(() => {
+    if (!uid) return;
     fetchAll();
-  }, []);
+  }, [uid]);
 
   return { userInfo, summitStatus, targetTime, isLoading };
 };

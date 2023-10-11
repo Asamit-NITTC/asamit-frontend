@@ -1,8 +1,6 @@
-# simple-asamit-frontend
-
-## 構成
-- Hosting
-    - React
+# asamit-frontend
+## Overview
+第34回 高専プロコン作品 Asamit! のフロントエンド
 
 ## Getting Started
 First, prepare .env file and set API key.

@@ -1,9 +1,15 @@
 import React from "react";
+import { Block } from "../ui/Block";
 
-export const SummitMain = () => {
+export const SummitMain = ({ roomInfo }) => {
   return (
     <>
-      <h1>グループページ</h1>
+      <Block>
+        <h2>ルーム</h2>
+        <p>roomId: {roomInfo.roomId}</p>
+        <p>wakeUpTime: {roomInfo.wakeUpTime}</p>
+        <p>description: {roomInfo.description}</p>
+      </Block>
     </>
   );
 };
