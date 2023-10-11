@@ -1,0 +1,40 @@
+.content {
+  margin: 2rem;
+}
+.content * {
+  margin: 1rem;
+  line-height: 1.2;
+}
+.username {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:30px;
+  margin:0px;
+  padding:0;
+  border-bottom: 1px solid #000000;
+  line-height: 0;
+}
+.userpoint{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:30px;
+    padding:0;
+    margin-top:20px;
+    line-height: 0;
+}
+.uid {
+  font-size: 1rem;
+  color: #757575;
+}
+.time {
+  font-size: 3rem;
+}
+.options {
+  text-align: right;
+  margin: 1rem;
+}
+.options * {
+  margin: 0.5rem;
+}

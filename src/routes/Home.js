@@ -23,9 +23,10 @@ export const Home = () => {
   return (
     <WebAppWrapper title="ホーム">
       <StatusCard
-        currentDate={year + '年' + month + '月' + day + '日'}
+        currentDate={year + "年" + month + "月" + day + "日"}
         pictureUrl={pictureUrl}
-        targetTime={targetTime} />
+        targetTime={targetTime}
+      />
       {!summitStatus.affiliation && (
         <div className="default-margin">
           <SummitPending />

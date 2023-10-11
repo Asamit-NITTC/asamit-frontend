@@ -1,15 +1,14 @@
 import React from "react";
-import { Block } from "../ui/Block";
+import { RoomCard } from "../ui/RoomCard";
 
 export const SummitMain = ({ roomInfo }) => {
   return (
     <>
-      <Block>
-        <h2>ルーム</h2>
-        <p>roomId: {roomInfo.roomId}</p>
-        <p>wakeUpTime: {roomInfo.wakeUpTime}</p>
-        <p>description: {roomInfo.description}</p>
-      </Block>
+      <RoomCard
+        roomId={roomInfo.roomId}
+        wakeUpTime={roomInfo.wakeUpTime}
+        description={roomInfo.description}
+      />
     </>
   );
 };
