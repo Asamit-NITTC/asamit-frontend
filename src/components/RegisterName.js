@@ -17,7 +17,7 @@ export const RegisterName = ({ register }) => {
     <>
       <Block>
         <div className={styles.content}>
-          <h2>ハンドルネームを登録</h2>
+          <h3>ハンドルネームを登録しよう</h3>
           <div>
             <input
               className={styles.input}

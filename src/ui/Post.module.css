@@ -1,0 +1,15 @@
+.base {
+  margin-top: 1rem;
+  position: relative;
+  background-color: #FFFFFF;
+  padding: 1rem;
+  border-radius: 10px;
+  /*border:2.5px solid #000000;*/
+  text-align: left;
+  line-height: 1.2;
+}
+.time {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}

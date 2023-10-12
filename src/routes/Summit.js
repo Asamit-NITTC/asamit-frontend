@@ -6,11 +6,13 @@ import { WebAppWrapper } from "../components/WebAppWrapper";
 import { UserInfoContext } from "../components/UserInfoProvider";
 import { useSummit } from "../hooks/useSummit";
 import { useSummitRoomInfo } from "../hooks/useSummitRoomInfo";
+import { useUid } from "../hooks/useUid";
 
 export const Summit = () => {
   const [view, setView] = useState("pending");
   const [isInvited, setIsInvited] = useState(false);
   const { summitStatus } = useContext(UserInfoContext);
+  const { uid } = useUid();
   const [{ roomId }, approve] = useSummit();
   const { roomInfo } = useSummitRoomInfo(roomId);
 
@@ -31,7 +33,9 @@ export const Summit = () => {
           roomInfo={roomInfo}
         />
       )}
-      {view === "main" && <SummitMain roomInfo={roomInfo} />}
+      {view === "main" && (
+        <SummitMain uid={uid} roomId={roomId} roomInfo={roomInfo} />
+      )}
       {view === "create" && <SummitCreate setPending={switchView} />}
     </WebAppWrapper>
   );

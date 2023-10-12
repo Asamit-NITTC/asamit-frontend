@@ -24,7 +24,7 @@ export const SummitCreate = ({ setPending }) => {
     setFormData({
       hostUID: uid,
       memberUID: [formUid],
-      wakeUpTime: `2023-06-27T${formTime}:00+9:00`,
+      wakeUpTime: `2023-06-27T${formTime}:00+09:00`,
       description: formDescription,
     });
   };

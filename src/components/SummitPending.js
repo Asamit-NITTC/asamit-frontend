@@ -5,6 +5,10 @@ import { PendingCard } from "../ui/PendingCard";
 
 export const SummitPending = ({ approve, setCreate, isInvited, roomInfo }) => {
   const [reload, setReload] = useState(false);
+  const handleApprove = () => {
+    approve();
+    setReload(reload ? false : true);
+  };
   console.log("レンダリング");
   return (
     <>
@@ -27,7 +31,7 @@ export const SummitPending = ({ approve, setCreate, isInvited, roomInfo }) => {
         </div>
         {isInvited && (
           <div>
-            <PendingCard roomInfo={roomInfo} approve={approve} />
+            <PendingCard roomInfo={roomInfo} approve={handleApprove} />
           </div>
         )}
       </Block>
