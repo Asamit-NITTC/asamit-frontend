@@ -46,7 +46,8 @@ export const LiffSignUp = () => {
     return (
       <>
         <main>
-          {DEBUG && <p>{log}</p>},{DEBUG && isLoading && <p>Loading</p>},
+          {DEBUG && <p>{log}</p>}
+          {DEBUG && isLoading && <p>Loading</p>}
           <RegisterName register={register} />
         </main>
       </>

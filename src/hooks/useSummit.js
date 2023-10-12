@@ -27,11 +27,12 @@ export const useSummit = () => {
   };
 
   const approve = async () => {
+    const idToken = liffObject?.getIDToken();
     try {
       const res = await doFetch({
         method: "patch",
         url: `/summit/approve?uid=${uid}`,
-        //headers: JSON.stringify({ Authorization: `Bearer ${idToken}` }),
+        headers: JSON.stringify({ Authorization: `Bearer ${idToken}` }),
       });
       console.log("approved" + JSON.stringify(res));
     } catch (err) {
