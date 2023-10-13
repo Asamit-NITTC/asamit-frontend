@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Header } from "../ui/Header";
 import { Footer } from "../ui/Footer";
 import { Login } from "../ui/Login";
-import { useLiff } from "../hooks/useLiff";
+import { LiffObjectContext } from "./LiffObjectProvider";
 
 export const WebAppWrapper = ({ title, children, ...props }) => {
-  const { isLoggedIn, login } = useLiff();
+  const { isLoggedIn, login } = useContext(LiffObjectContext);
 
   return (
     <div {...props}>

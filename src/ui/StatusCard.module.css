@@ -1,0 +1,17 @@
+.content {
+  margin: 2rem;
+}
+.content * {
+  margin: 1rem;
+  line-height: 1.2;
+}
+.target {
+  font-size: 4rem;
+}
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+.date {
+  font-size: 2rem;
+}

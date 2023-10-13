@@ -27,26 +27,34 @@ export const useLiff = () => {
   const [isInClient, setIsInClient] = useState(true);
 
   const login = () => {
-    liffObject?.login();
+    liffObject?.login(
+      !isInClient && { redirectUri: `${location.origin}/app/home` },
+    );
   };
 
   const logout = () => {
     liffObject?.logout();
     setIsLoggedIn(false);
+    localStorage.removeItem("uid");
+    localStorage.removeItem("roomId");
+  };
+
+  const initLiff = async () => {
+    try {
+      await liff.init({ liffId: process.env.REACT_APP_LIFF_ID });
+      setLiffObject(liff);
+      console.log("initialize");
+    } catch (err) {
+      console.log({ err });
+    }
   };
 
   useEffect(() => {
-    if (isLoggedIn) return;
+    setIsInClient(liff.isInClient());
     (async () => {
-      try {
-        console.log("initialize");
-        await liff.init({ liffId: process.env.REACT_APP_LIFF_ID });
-        setLiffObject(liff);
-        setIsLoggedIn(liff.isLoggedIn());
-        setIsInClient(liff.isInClient());
-      } catch (err) {
-        console.error({ err });
-      }
+      await initLiff();
+      setIsLoggedIn(liff.isLoggedIn());
+      if (isLoggedIn) return;
     })();
   }, []);
 

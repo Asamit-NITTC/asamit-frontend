@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useLiff } from "../hooks/useLiff";
-import { useLiffInfo } from "../hooks/useLiffInfo";
+import React, { useState, useEffect, useContext } from "react";
 import { useLiffMessage } from "../hooks/useLiffMessage";
 import { useAxios } from "../hooks/useAxios";
 import { RegisterName } from "../components/RegisterName";
+import { LiffObjectContext } from "../components/LiffObjectProvider";
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
-export const LiffSignUp = (props) => {
+export const LiffSignUp = () => {
   const [log, setLog] = useState("");
-  const { liffObject, isLoggedIn, isInClient } = useLiff();
+  const { liffObject, isLoggedIn, isInClient } = useContext(LiffObjectContext);
   const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
-  const { idToken } = useLiffInfo(liffObject, isLoggedIn);
   const [{ isLoading }, doFetch] = useAxios();
 
   const register = async (name) => {
+    const idToken = liffObject?.getIDToken();
     try {
       const res = await doFetch({
         method: "post",
@@ -23,7 +22,7 @@ export const LiffSignUp = (props) => {
       });
       setLog("signup success " + JSON.stringify(res));
       const uid = res.uid;
-      props.setCookieUid(uid);
+      localStorage.setItem("uid", uid);
       sendMessages(`登録完了\nID: ${uid}`);
     } catch (err) {
       setLog("signup failed " + JSON.stringify(err));
@@ -38,18 +37,20 @@ export const LiffSignUp = (props) => {
   };
 
   useEffect(() => {
-    if (Object.keys(liffObject).length === 0 || !idToken) return;
-  }, [idToken]);
+    if (Object.keys(liffObject).length === 0) return;
+  }, [liffObject]);
 
-  return (
-    <>
-      {!isInClient && <h1>不正な遷移です</h1>}
-      {isInClient && (
+  if (!isInClient && !DEBUG) {
+    return <h1>不正な遷移です</h1>;
+  } else {
+    return (
+      <>
         <main>
-          {DEBUG && <p>{log}</p>},{DEBUG && isLoading && <p>Loading</p>},
+          {DEBUG && <p>{log}</p>}
+          {DEBUG && isLoading && <p>Loading</p>}
           <RegisterName register={register} />
         </main>
-      )}
-    </>
-  );
+      </>
+    );
+  }
 };

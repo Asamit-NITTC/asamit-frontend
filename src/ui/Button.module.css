@@ -1,5 +1,5 @@
 .button {
-  font-weight: bold;
+  /*font-weight: bold;*/
   cursor: pointer;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .medium {
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   font-size: 16px;
   border-radius: 8px;
 }
@@ -27,16 +27,16 @@
 }
 
 .primary {
-  color: var(--white);
+  color: #fff;
   background-color: var(--btn-yellow);
   border: none;
 }
 
 .secondary {
-  color: var(--black);
-  border-color: var(--black);
+  color: var(--btn-yellow);
+  border-color: var(--btn-yellow);
   background-color: var(--white);
-  border: 2px solid transparent;
+  border: 2px solid ;
 }
 
 .alert {

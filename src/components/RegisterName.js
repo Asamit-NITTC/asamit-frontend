@@ -4,6 +4,7 @@ import { Block } from "../ui/Block";
 //import { useAxios } from "../hooks/useAxios";
 import { useFormData } from "../hooks/useFormData";
 //const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
+import styles from "./RegisterName.module.css";
 
 export const RegisterName = ({ register }) => {
   //const [{ isLoading }, doFetch] = useAxios();
@@ -15,12 +16,20 @@ export const RegisterName = ({ register }) => {
   return (
     <>
       <Block>
-        <h2>ハンドルネーム(表示名)を登録</h2>
-        <div>
-          <input type="text" name="memberUID" onChange={setName} value={name} />
-          <Button type="summit" onClick={() => register(name)}>
-            登録する！
-          </Button>
+        <div className={styles.content}>
+          <h3>ハンドルネームを登録しよう</h3>
+          <div>
+            <input
+              className={styles.input}
+              type="text"
+              name="memberUID"
+              onChange={setName}
+              value={name}
+            />
+            <Button type="summit" onClick={() => register(name)}>
+              登録する！
+            </Button>
+          </div>
         </div>
       </Block>
     </>
