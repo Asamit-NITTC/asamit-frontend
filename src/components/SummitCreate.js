@@ -21,10 +21,11 @@ export const SummitCreate = ({ setPending }) => {
   const [formDescription, setFormDescription] = useFormData("");
 
   const setAll = () => {
+    const dt = new Date(`2023-04-01 ${formTime}`);
     setFormData({
       hostUID: uid,
       memberUID: [formUid],
-      wakeUpTime: `2023-06-27T${formTime}:00+09:00`,
+      wakeUpTime: dt.toISOString(),
       description: formDescription,
     });
   };

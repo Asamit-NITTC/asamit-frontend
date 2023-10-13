@@ -21,7 +21,7 @@ export const useAchievements = (uid) => {
         const dt = new Date(achievement.WakeUpTime);
         const time = dt.getHours() + ":" + dt.getMinutes();
         const date =
-          dt.getFullYear() + "-" + (dt.getMonth() + 1) + "-" + dt.getDay();
+          dt.getFullYear() + "-" + (dt.getMonth() + 1) + "-" + dt.getDate();
         return {
           date: date,
           time: time,

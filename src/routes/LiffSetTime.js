@@ -22,12 +22,13 @@ export const LiffSetTime = () => {
       const idToken = liffObject?.getIDToken();
       if (uid && idToken) {
         try {
+          const dt = new Date(`2023-04-01 ${targetTime}`);
           const res = await doFetch({
             method: "put",
             url: "/target-time/set",
             body: JSON.stringify({
               uid: uid,
-              targetTime: `2023-06-27T${targetTime}:00+10:00`,
+              targetTime: dt.toISOString(),
             }),
             headers: JSON.stringify({ Authorization: `Bearer ${idToken}` }),
           });

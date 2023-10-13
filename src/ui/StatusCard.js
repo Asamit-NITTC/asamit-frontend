@@ -4,9 +4,6 @@ import styles from "./StatusCard.module.css";
 import { ProfilePic } from "./ProfilePic";
 
 export const StatusCard = ({ currentDate, pictureUrl, targetTime }) => {
-  const rawTime = new Date(targetTime);
-  const h = rawTime.getHours();
-  const m = rawTime.getMinutes();
   return (
     <>
       <Block>
@@ -16,7 +13,7 @@ export const StatusCard = ({ currentDate, pictureUrl, targetTime }) => {
             <ProfilePic pictureUrl={pictureUrl} />
             <div>
               <p className="">明日の起床時刻</p>
-              <p className={styles.target}>{h + ":" + m}</p>
+              <p className={styles.target}>{targetTime}</p>
             </div>
           </div>
         </div>

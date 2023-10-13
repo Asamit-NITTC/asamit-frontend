@@ -39,9 +39,9 @@ export const useUidInfo = (uid) => {
       const res = await doFetch({
         method: "get",
         url: `/target-time/get?uid=${uid}`,
-        //headers: JSON.stringify({ Authorization: `Bearer ${idToken}` }),
       });
-      setTargetTime(res.targetTime);
+      const dt = new Date(res.targetTime);
+      setTargetTime(dt.getHours() + ":" + dt.getMinutes());
     } catch (err) {
       console.log(err);
     }
