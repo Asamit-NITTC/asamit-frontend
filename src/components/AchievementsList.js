@@ -7,7 +7,7 @@ export const AchievementsList = ({ uid }) => {
 
   return (
     <>
-      {achievementData[0].date !== "" &&
+      {achievementData[0] !== "" &&
         achievementData.map((achievement) => (
           <Post
             key=""

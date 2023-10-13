@@ -41,7 +41,9 @@ export const useUidInfo = (uid) => {
         url: `/target-time/get?uid=${uid}`,
       });
       const dt = new Date(res.targetTime);
-      setTargetTime(dt.getHours() + ":" + dt.getMinutes());
+      const h = dt.getHours().toString().padStart(2, "0");
+      const m = dt.getMinutes().toString().padStart(2, "0");
+      setTargetTime(h + ":" + m);
     } catch (err) {
       console.log(err);
     }
