@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { ScanModal } from "./ScanModal";
 import { Button } from "../ui/Button";
 import { Block } from "../ui/Block";
 import { useAxios } from "../hooks/useAxios";
@@ -9,6 +10,8 @@ import styles from "./SummitCreate.module.css";
 const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
 export const SummitCreate = ({ setPending }) => {
+  const [isScanning, setIsScanning] = useState(false);
+
   const [{ isLoading }, doFetch] = useAxios();
   const [formData, setFormData] = useState({});
   const { liffObject } = useContext(LiffObjectContext);
@@ -29,27 +32,9 @@ export const SummitCreate = ({ setPending }) => {
     });
   };
 
-  const handleScan = async () => {
-    const scanResult = await liffObject?.scanCodeV2();
-    const uid = scanResult.value;
-    try {
-      if (isNaN(Number(uid)) || !uid) throw "不正なQRコードです";
-      setFormUid(uid);
-    } catch (err) {
-      setError(err);
-    }
+  const handleScan = () => {
+    setIsScanning(true);
   };
-  /*
-  const {
-    ref,
-    torch: { on, off, isAvailable},
-  } = useZxing({
-    onDecodeResult(result) {
-      setFormUid(result.getText());
-      off();
-    }
-  });
-  */
 
   const createGroup = async () => {
     const idToken = liffObject?.getIDToken();
@@ -76,6 +61,7 @@ export const SummitCreate = ({ setPending }) => {
 
   return (
     <>
+      <ScanModal isOn={isScanning} />
       <Block>
         <div className={styles.content}>
           <h2>グループを作成</h2>
@@ -91,7 +77,7 @@ export const SummitCreate = ({ setPending }) => {
                 />
               </div>
               {
-                <Button type="summit" onClick={handleScan}>
+                <Button type="summit" visual="secondary" onClick={handleScan}>
                   QRコードから追加
                 </Button>
               }
