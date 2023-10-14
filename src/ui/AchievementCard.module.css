@@ -1,0 +1,17 @@
+.base {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  background-color: #FFFFFF;
+  padding: 1rem;
+  border-radius: 10px;
+  /*border:2.5px solid #000000;*/
+  text-align: left;
+  line-height: 1.2;
+}
+.text {
+  justify-self: stretch;
+}
+.time {
+  font-size: 2.5rem;
+}
