@@ -12,7 +12,7 @@ import { AchievementsList } from "../components/AchievementsList";
 export const Profile = () => {
   const { liffObject, isLoggedIn, logout } = useContext(LiffObjectContext);
   const { uid } = useUid();
-  const { userInfo } = useContext(UserInfoContext);
+  const [{ userInfo }] = useContext(UserInfoContext);
   const { pictureUrl } = useLiffInfo(liffObject, isLoggedIn);
   const [loggedOut, setLoggedOut] = useState(false);
   const logoutBtn = () => {

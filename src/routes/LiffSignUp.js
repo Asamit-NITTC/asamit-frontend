@@ -12,6 +12,7 @@ export const LiffSignUp = () => {
   const [{ isLoading }, doFetch] = useAxios();
 
   const register = async (name) => {
+    localStorage.removeItem("uid");
     const idToken = liffObject?.getIDToken();
     try {
       const res = await doFetch({

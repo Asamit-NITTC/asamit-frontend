@@ -7,7 +7,7 @@ import { ProfileCard } from "../ui/ProfileCard";
 
 export const LiffLightProfile = () => {
   const { liffObject, isLoggedIn, isInClient } = useContext(LiffObjectContext);
-  const { userInfo } = useContext(UserInfoContext);
+  const [{ userInfo }] = useContext(UserInfoContext);
   const { pictureUrl } = useLiffInfo(liffObject, isLoggedIn);
   const openAsamitApp = () => {
     liffObject?.openWindow({

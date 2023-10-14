@@ -8,7 +8,7 @@ import { TimeLine } from "../components/TimeLine";
 
 export const Home = () => {
   const { liffObject, isLoggedIn } = useContext(LiffObjectContext);
-  const { targetTime } = useContext(UserInfoContext);
+  const [{ targetTime }] = useContext(UserInfoContext);
   const { pictureUrl } = useLiffInfo(liffObject, isLoggedIn);
 
   const currentDate = new Date();
