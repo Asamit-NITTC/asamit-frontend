@@ -3,12 +3,12 @@ import { WebAppWrapper } from "../components/WebAppWrapper";
 import { LiffObjectContext } from "../components/LiffObjectProvider";
 import { useLiffInfo } from "../hooks/useLiffInfo";
 import { UserInfoContext } from "../components/UserInfoProvider";
-import { SummitPending } from "../components/SummitPending";
 import { StatusCard } from "../ui/StatusCard";
+import { TimeLine } from "../components/TimeLine";
 
 export const Home = () => {
   const { liffObject, isLoggedIn } = useContext(LiffObjectContext);
-  const { summitStatus, targetTime } = useContext(UserInfoContext);
+  const { targetTime } = useContext(UserInfoContext);
   const { pictureUrl } = useLiffInfo(liffObject, isLoggedIn);
 
   const currentDate = new Date();
@@ -22,11 +22,7 @@ export const Home = () => {
         pictureUrl={pictureUrl}
         targetTime={targetTime}
       />
-      {!summitStatus.affiliation && (
-        <div className="default-margin">
-          <SummitPending />
-        </div>
-      )}
+      <TimeLine />
     </WebAppWrapper>
   );
 };

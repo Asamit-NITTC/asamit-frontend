@@ -13,7 +13,7 @@ export const SummitMain = ({ uid, roomId, roomInfo }) => {
         wakeUpTime={roomInfo.wakeUpTime}
         description={roomInfo.description}
       />
-      {roomPosts[0].userId !== "" &&
+      {(roomPosts[0] !== "") &
         roomPosts.map((post) => (
           <Post
             key=""
