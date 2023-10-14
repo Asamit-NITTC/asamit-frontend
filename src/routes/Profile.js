@@ -26,6 +26,7 @@ export const Profile = () => {
         userInfo={userInfo}
         logoutBtn={logoutBtn}
       />
+      <h4 className="default-margin">あなたの起床記録</h4>
       <AchievementsList uid={uid} />
       {loggedOut && <Navigate replace to="/app/home" />}
     </WebAppWrapper>

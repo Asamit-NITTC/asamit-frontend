@@ -1,7 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { useAxios } from "./useAxios";
 import { LiffObjectContext } from "../components/LiffObjectProvider";
-//import { useUidInfo } from "./useUidInfo";
 
 export const useReports = () => {
   const [roomPosts, setRoomPosts] = useState([
@@ -11,40 +10,52 @@ export const useReports = () => {
       createdAt: "",
     },
   ]);
+  const [nameFromUid, setNameFromUid] = useState({ uid: "name" });
   const { liffObject } = useContext(LiffObjectContext);
   const [, doFetch] = useAxios();
-  //const { userInfo } = useUidInfo()
 
   const fetchData = async () => {
     const idToken = liffObject?.getIDToken();
+    const nameToUid = {};
     try {
       const res = await doFetch({
         method: "get",
         url: `/wake/get-all-report/no-uid`,
         headers: JSON.stringify({ Authorization: `Bearer ${idToken}` }),
       });
-      const convertedPostData = res.map((post) => {
-        /*
- jljlji       try {
-          const res = await doFetch({
-            method: "get", url: `/users/${post.uid}`
-          });
-          var name = res.name;
-        } catch (err) {
-          console.log(err)
-        };
-        */
+      const convertedPostData = res.reverse().map((post) => {
+        nameToUid[post.uid] = "";
+        const dt = new Date(post.CreatedAt);
         return {
           userId: post.uid,
           comment: post.comment,
-          createdAt: post.CreatedAt,
+          createdAt: dt.toDateString(),
         };
       });
       console.log(convertedPostData);
       setRoomPosts(convertedPostData);
+      console.log(nameToUid);
+      setNameFromUid(nameToUid);
+      fetchName(nameToUid);
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const fetchName = async (nameUid) => {
+    const nameToUid = {};
+    console.log("fetchName");
+    for (let k of Object.keys(nameUid)) {
+      const res = await doFetch({
+        method: "get",
+        url: `/users/${k}`,
+      });
+      if (res) {
+        nameToUid[k] = res.name;
+      }
+    }
+    console.log(nameToUid);
+    setNameFromUid(nameToUid);
   };
 
   useEffect(() => {
@@ -53,5 +64,5 @@ export const useReports = () => {
     }
   }, [liffObject]);
 
-  return { roomPosts };
+  return { roomPosts, nameFromUid };
 };
