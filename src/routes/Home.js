@@ -22,6 +22,7 @@ export const Home = () => {
         pictureUrl={pictureUrl}
         targetTime={targetTime}
       />
+      <h4 className="default-margin">みんなの起床記録</h4>
       <TimeLine />
     </WebAppWrapper>
   );
