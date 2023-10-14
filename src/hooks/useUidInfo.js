@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useAxios } from "./useAxios";
+import { LiffObjectContext } from "../components/LiffObjectProvider";
 
 export const useUidInfo = (uid) => {
   const [userInfo, setUserInfo] = useState({
@@ -13,6 +14,7 @@ export const useUidInfo = (uid) => {
   });
   const [targetTime, setTargetTime] = useState();
   const [{ isLoading }, doFetch] = useAxios();
+  const { liffObject } = useContext(LiffObjectContext);
 
   const fetchData = async () => {
     try {
@@ -53,10 +55,27 @@ export const useUidInfo = (uid) => {
     await Promise.all([fetchData(), fetchDate()]);
   };
 
+  const putData = async (bodyObj) => {
+    //{ "key": "value"}
+    const idToken = liffObject?.getIDToken();
+    bodyObj.uid = uid;
+    try {
+      const res = await doFetch({
+        method: "put",
+        url: `/users/update_profile`,
+        body: JSON.stringify(bodyObj),
+        headers: JSON.stringify({ Authorization: `Bearer ${idToken}` }),
+      });
+      console.log("updated: " + JSON.stringify(res));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     if (!uid) return;
     fetchAll();
-  }, [uid]);
+  }, [uid, liffObject]);
 
-  return { userInfo, summitStatus, targetTime, isLoading };
+  return [{ userInfo, summitStatus, targetTime, isLoading }, putData];
 };

@@ -12,7 +12,7 @@ const DEBUG = process.env.DEBUG === "TRUE" ? true : false;
 
 export const LiffWakeUp = () => {
   const { liffObject, isLoggedIn, isInClient } = useContext(LiffObjectContext);
-  const { targetTime } = useContext(UserInfoContext);
+  const [{ userInfo, targetTime }, putData] = useContext(UserInfoContext);
   const { sendMessages } = useLiffMessage(liffObject, isLoggedIn);
   const [{ isLoading }, doFetch] = useAxios();
   const [log, setLog] = useState("");
@@ -40,6 +40,8 @@ export const LiffWakeUp = () => {
       });
       setLog("posted " + JSON.stringify(res.data));
       sendMessages("起床報告を記録しました");
+      const newPoint = userInfo.point + 1;
+      putData({ point: newPoint });
     } catch (err) {
       setLog("failed to post report " + JSON.stringify(err));
       setError("failed");

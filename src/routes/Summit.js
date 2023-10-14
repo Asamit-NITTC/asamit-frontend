@@ -11,7 +11,7 @@ import { useUid } from "../hooks/useUid";
 export const Summit = () => {
   const [view, setView] = useState("pending");
   const [isInvited, setIsInvited] = useState(false);
-  const { summitStatus } = useContext(UserInfoContext);
+  const [{ summitStatus }] = useContext(UserInfoContext);
   const { uid } = useUid();
   const [{ roomId }, approve] = useSummit();
   const { roomInfo } = useSummitRoomInfo(roomId);
