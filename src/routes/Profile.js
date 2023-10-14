@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useLiffInfo } from "../hooks/useLiffInfo";
 import { WebAppWrapper } from "../components/WebAppWrapper";
-import { Button } from "../ui/Button";
 import { Navigate } from "react-router-dom";
 import { useUid } from "../hooks/useUid";
 import { LiffObjectContext } from "../components/LiffObjectProvider";
@@ -22,12 +21,13 @@ export const Profile = () => {
 
   return (
     <WebAppWrapper title="実績">
-      <ProfileCard pictureUrl={pictureUrl} userInfo={userInfo} />
+      <ProfileCard
+        pictureUrl={pictureUrl}
+        userInfo={userInfo}
+        logoutBtn={logoutBtn}
+      />
       <h4 className="default-margin">あなたの起床記録</h4>
       <AchievementsList uid={uid} />
-      <Button onClick={logoutBtn} className="default-margin">
-        ログアウト
-      </Button>
       {loggedOut && <Navigate replace to="/app/home" />}
     </WebAppWrapper>
   );

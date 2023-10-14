@@ -1,5 +1,5 @@
 import React from "react";
-import { Post } from "../ui/Post";
+import { AchievementCard } from "../ui/AchievementCard";
 import { useAchievements } from "../hooks/useAchievements";
 
 export const AchievementsList = ({ uid }) => {
@@ -9,7 +9,7 @@ export const AchievementsList = ({ uid }) => {
     <>
       {achievementData[0] !== "" &&
         achievementData.map((achievement) => (
-          <Post
+          <AchievementCard
             key=""
             content={{
               name: achievement.date,

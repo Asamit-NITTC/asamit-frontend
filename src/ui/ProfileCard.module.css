@@ -1,5 +1,6 @@
 .content {
   margin: 2rem;
+  position: relative;
 }
 .content * {
   margin: 1rem;
@@ -39,4 +40,9 @@ button {
 .uid {
   font-size: 1rem;
   color: #757575;
+}
+.logout {
+  position: absolute;
+  right: 0;
+  width:fit-content;
 }

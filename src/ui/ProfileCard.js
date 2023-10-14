@@ -2,12 +2,18 @@ import React from "react";
 import { Block } from "../ui/Block";
 import styles from "./ProfileCard.module.css";
 import { ProfilePic } from "./ProfilePic";
+import { MdLogout } from "react-icons/md";
 
-export const ProfileCard = ({ pictureUrl, userInfo }) => {
+export const ProfileCard = ({ pictureUrl, userInfo, logoutBtn }) => {
   return (
     <>
       <Block>
         <div className={styles.content}>
+          <div className={styles.logout}>
+            <button onClick={logoutBtn}>
+              <MdLogout size="2.5rem" />
+            </button>
+          </div>
           <ProfilePic pictureUrl={pictureUrl} />
           <div className={styles.username}>
             <p>表示名:</p>
