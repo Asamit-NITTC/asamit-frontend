@@ -8,6 +8,9 @@
   text-align: left;
   line-height: 1.2;
 }
+.uid {
+  font-size: 1rem;
+}
 .time {
   position: absolute;
   right: 1rem;

@@ -23,6 +23,7 @@ export const Profile = () => {
   return (
     <WebAppWrapper title="実績">
       <ProfileCard pictureUrl={pictureUrl} userInfo={userInfo} />
+      <h4 className="default-margin">あなたの起床記録</h4>
       <AchievementsList uid={uid} />
       <Button onClick={logoutBtn} className="default-margin">
         ログアウト
