@@ -21,11 +21,17 @@ export const useRoomPost = (uid, roomId) => {
         url: `/summit/room-talk?room-id=${roomId}&uid=${uid}`,
         headers: JSON.stringify({ Authorization: `Bearer ${idToken}` }),
       });
-      const convertedPostData = res.map((post) => {
+      //WARN DBのレスポンスに依存
+      const postData = res.match(/\[[^\]]+\]/);
+      console.log(postData);
+      const postDataArray = JSON.parse(postData);
+      console.log(postDataArray);
+      const convertedPostData = postDataArray.map((post) => {
         return {
           userId: post.UserUID,
           comment: post.Comment,
           createdAt: post.CreatedAt,
+          imageUrl: post.ImageURL,
         };
       });
       console.log(convertedPostData);

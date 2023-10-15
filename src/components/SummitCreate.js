@@ -26,6 +26,7 @@ export const SummitCreate = ({ setPending }) => {
       hostUID: uid,
       memberUID: [formUid],
       wakeUpTime: dt.toISOString(),
+      mission: "",
       description: formDescription,
     });
   };

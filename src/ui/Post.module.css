@@ -16,3 +16,7 @@
   right: 1rem;
   top: 1rem;
 }
+.picture {
+  max-height: 40vh;
+  margin: 0.5rem;
+}

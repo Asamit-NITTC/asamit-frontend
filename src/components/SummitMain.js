@@ -13,7 +13,7 @@ export const SummitMain = ({ uid, roomId, roomInfo }) => {
         wakeUpTime={roomInfo.wakeUpTime}
         description={roomInfo.description}
       />
-      {(roomPosts[0] !== "") &
+      {roomPosts[0].userId !== "" &&
         roomPosts.map((post) => (
           <Post
             key=""
@@ -21,6 +21,7 @@ export const SummitMain = ({ uid, roomId, roomInfo }) => {
               name: post.userId,
               comment: post.comment,
               createdAt: post.createdAt,
+              imageUrl: post.imageUrl,
             }}
           />
         ))}
